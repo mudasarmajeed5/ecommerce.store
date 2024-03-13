@@ -4,7 +4,7 @@ import React from 'react'
 const Footer = () => {
   return (
     <div>
-      This is a footer
+      I am a footer component inside components directory
     </div>
   )
 }
