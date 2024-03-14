@@ -3,7 +3,9 @@ import React from 'react'
 import { FaSearch,FaRegUserCircle,FaCartArrowDown } from "react-icons/fa";
 import { BiSolidCategory } from "react-icons/bi";
 import { IoMdHome } from "react-icons/io";
+import Link from 'next/link';
 const Navbar = () => {
+
   return (
     <nav className='flex flex-col-reverse md:flex-row items-center bg-black p-2 xl:p-3 2xl:p-4 md:justify-between'>
       <div className='hidden md:block logo font-[Poppins] text-xl font-bold md:font-normal xl:text-2xl 2xl:text-4xl w-full text-center md:w-1/4'>
@@ -26,10 +28,10 @@ const Navbar = () => {
           <FaRegUserCircle/>
         </div>
         <div className="md:hidden flex fixed left-0 bottom-0 w-full justify-around bg-black p-2">
-            <li className='list-none text-2xl'><IoMdHome/></li>
-            <li className='list-none text-2xl'><BiSolidCategory/></li>
-            <li className='list-none text-2xl'><FaCartArrowDown/></li>
-            <li className='list-none text-2xl'><FaRegUserCircle/></li>
+          <li className='list-none text-2xl'><Link href="/" className='hover:text-blue-300'><IoMdHome/></Link></li>
+          <li className='list-none text-2xl'><Link href="/categories" className='hover:text-blue-300'><BiSolidCategory/></Link></li>
+          <li className='list-none text-2xl'><Link href="/mycart" className='hover:text-blue-300'><FaCartArrowDown/></Link></li>
+          <li className='list-none text-2xl'><Link href="/profile" className='hover:text-blue-300'><FaRegUserCircle/></Link></li>
         </div>
       </div>
     </nav>
