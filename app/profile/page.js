@@ -8,8 +8,8 @@ export default function Component() {
       {session ? (
         <div>
           <div className="mt-4">
-            Signed in as <span className="text-blue-500">{session.user.email}</span> <br />
-            Welcome back <span className="text-blue-500">{session.user.name}</span>
+            Signed in as <span className="text-lg font-[Poppins] underline underline-offset-4 text-blue-800">{session.user.email}</span> <br />
+            Welcome back <span className="text-lg font-[Poppins] underline underline-offset-4 text-blue-800">{session.user.name}</span>
           </div>
           <div className="mt-4 flex justify-center">
             <img src={session.user.image} alt="User" className="rounded-full w-20 h-20" />
@@ -32,7 +32,7 @@ export default function Component() {
           </button>
           <button 
             onClick={() => signIn('google')} 
-            className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+            className="mt-4 px-4 mx-2 py-2 bg-red-500 text-white rounded hover:bg-red-600"
           >
             Sign in with Google
           </button>
