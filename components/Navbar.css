@@ -15,3 +15,7 @@
     width: 100%;
     transform: translate(-50%,-50%);
 }
+nav{
+    background-color: var(--navbar-color);
+    
+}
