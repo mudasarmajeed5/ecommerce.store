@@ -1,0 +1,17 @@
+#psuedo_underline{
+    position: relative;
+}
+#psuedo_underline::before{
+    position: absolute;
+    content: '';
+    left: 50%;
+    bottom: -3px;
+    width: 0%;
+    height: 2px;
+    background-color: teal;
+    transition: all 0.2s ease;
+}
+#psuedo_underline:hover::before{
+    width: 100%;
+    transform: translate(-50%,-50%);
+}
