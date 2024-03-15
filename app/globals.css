@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 /* https://coolors.co/2e0219-4a001f-6a0f49-a7c4c2-97efe9  color theme*/
 :root{
   --navbar-color:#2E0219;
@@ -6,12 +7,15 @@
   --secondary-color:#6A0F49;
   --third-color:#A7C4C2;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 body{
   background-color: #F7B2AD;
   color: white;
+}
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }

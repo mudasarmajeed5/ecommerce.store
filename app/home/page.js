@@ -1,8 +1,10 @@
 import React from 'react'
+import Carousel from './data/carousel'
 const page = () => {
+  
   return (
-    <div className="hero text-black h-[70vh] flex items-center justify-center">
-      Will add the picture moving functionality when multiple pictures are provided
+    <div className="my-5 flex justify-center">
+      <Carousel />
     </div>
   )
 }
