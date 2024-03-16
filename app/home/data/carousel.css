@@ -47,3 +47,17 @@
 .indicator-inactive{
     background-color: gray;
 }
+
+.Carousel-main{
+    position: relative;
+}
+
+.Carouseltext{
+    position: absolute;
+    top: 35%;
+    color: rgb(103, 131, 145);
+    left: 20%;
+    display: flex;
+    text-align: center;
+    font-size: 4rem;
+}

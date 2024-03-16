@@ -12,6 +12,7 @@ const Carousel = () => {
             {
                 "src": FirstImage.src,
                 "alt": "Image 1 for carousel",
+                // Make the text short so that it looks good and don't change styling for the text... WIll adujst... First get the text shorter
                 "text":"lorem cipsum fasju lorem siupum, dar es togle. poisenous nigga was a bright kid. but he got killed"
             },
             {
@@ -47,11 +48,14 @@ const Carousel = () => {
         <div className="carousel w-screen">
             <FaArrowCircleLeft className="arrow arrow-left" onClick={preSlide} />
             {Imagedata.map((image, index) => {
-                return (
-                    <div>
+                return (<>
+                    <div className="Carousel-main">
                         <img src={image.src} draggable={false} alt={image.alt} key={index} className={`${slide == index ? "slide" : "slide slide-hidden"} object-cover w-full md:w-[93vw] object-center h-[55vh] md:h-[45vh]`} ></img>
-                      {/* text daal dena phir */}
+                        <div className={`  ${slide == index ? "slide Carouseltext" : "slide slide-hidden"}`}>
+                        {image.text}
+                        </div>
                     </div>
+                </>
                 )
             })}
             <FaArrowCircleRight className="arrow arrow-right" onClick={nextSlide} />
