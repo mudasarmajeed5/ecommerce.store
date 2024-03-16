@@ -3,7 +3,7 @@ import Carousel from './data/carousel'
 const page = () => {
   
   return (
-    <div className="my-5 flex justify-center">
+    <div className="w-[screen] flex justify-center">
       <Carousel />
     </div>
   )

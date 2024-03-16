@@ -1,29 +1,41 @@
 "use client"
 import "./carousel.css"
 import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
-import React, { useState } from "react";
+import FirstImage from "./Images/FirstImage.png"
+import SecondImage from "./Images/SecondImage.png"
+import ThirdImage from "./Images/ThirdImage.png"
+import React, { useState,useEffect } from "react";
 const Carousel = () => {
+    console.log(FirstImage);
     const CarouselData = {
         "slides": [
             {
-                "src": "https://picsum.photos/seed/img1/600/400",
-                "alt": "Image 1 for carousel"
+                "src": FirstImage.src,
+                "alt": "Image 1 for carousel",
+                "text":"lorem cipsum fasju lorem siupum, dar es togle. poisenous nigga was a bright kid. but he got killed"
             },
             {
-                "src": "https://picsum.photos/seed/img2/600/400",
-                "alt": "Image 2 for carousel"
+                "src": SecondImage.src,
+                "alt": "Image 2 for carousel ",
+                "text":" Image 2 for carousel lorem cipsum fasju lorem siupum, dar es togle"
             },
             {
-                "src": "https://picsum.photos/seed/img3/600/400",
-                "alt": "Image 3 for carousel"
+                "src": ThirdImage.src,
+                "alt": "Image 3 for carousel",
+                "text":"Image 3 for carousel poisenous nigga was a bright kid. but he got killed"
             }
         ]
     }
     let Imagedata = CarouselData.slides;
+    // Auto slideShow
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setslide(prevSlide => (prevSlide === Imagedata.length - 1 ? 0 : prevSlide + 1));
+        }, 5000);
+        
+        return () => clearInterval(intervalId);
+    }, []);
     const [slide, setslide] = useState(0);
-    setInterval(() => {
-        setslide(slide == Imagedata.length - 1 ? 0 : slide + 1);
-    }, 4000);
     const nextSlide = () => {
         setslide(slide == Imagedata.length - 1 ? 0 : slide + 1);
     }
@@ -32,11 +44,14 @@ const Carousel = () => {
     }
 
     return (
-        <div className="carousel">
+        <div className="carousel w-screen">
             <FaArrowCircleLeft className="arrow arrow-left" onClick={preSlide} />
             {Imagedata.map((image, index) => {
                 return (
-                    <img src={image.src} alt={image.alt} key={index} className={slide == index ? "slide" : "slide slide-hidden"} ></img>
+                    <div>
+                        <img src={image.src} draggable={false} alt={image.alt} key={index} className={`${slide == index ? "slide" : "slide slide-hidden"} object-cover w-full md:w-[93vw] object-center h-[55vh] md:h-[45vh]`} ></img>
+                      {/* text daal dena phir */}
+                    </div>
                 )
             })}
             <FaArrowCircleRight className="arrow arrow-right" onClick={nextSlide} />
