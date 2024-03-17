@@ -1,13 +1,12 @@
 "use client"
-import "./carousel.css"
-import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
-import { MdArrowBackIos , MdArrowForwardIos } from "react-icons/md";
+import "./carousel.css";
+import { v4 } from 'uuid';
+import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import FirstImage from "./Images/FirstImage.png"
 import SecondImage from "./Images/SecondImage.png"
 import ThirdImage from "./Images/ThirdImage.png"
 import React, { useState, useEffect } from "react";
 const Carousel = () => {
-    console.log(FirstImage);
     const CarouselData = {
         "slides": [
             {
@@ -49,10 +48,12 @@ const Carousel = () => {
         <div className="carousel w-screen">
             <MdArrowBackIos className="arrow arrow-left" onClick={preSlide} />
             {Imagedata.map((image, index) => {
-                return (<>
+                let unique_id = v4()
+                return (
+                <>
                     <div className="Carousel-main">
                         <img src={image.src} draggable={false} alt={image.alt} key={index} className={`${slide == index ? "slide" : "slide slide-hidden"} object-cover w-full md:w-[93vw] object-center h-[55vh] md:h-[45vh]`} ></img>
-                        <div className={`  ${slide == index ? "slide Carouseltext" : "slide slide-hidden"}`}>
+                        <div className={`${slide == index ? "slide Carouseltext" : "slide slide-hidden"}`}>
                             {image.text}
                         </div>
                     </div>
