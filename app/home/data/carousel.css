@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 .carousel{
     display: flex;
     justify-content: center;
@@ -6,10 +8,15 @@
     background-color: rgb(39, 1, 1);
 }
 
+.carousel img{
+    width: 100vw;
+}
+
 .arrow{
     position: absolute;
     width: 2rem;
     height: 2rem;
+    z-index: 2;
     color: white;
     opacity: 0.7;
     filter: drop-shadow(0px 0px 5px #000000);
@@ -54,10 +61,11 @@
 
 .Carouseltext{
     position: absolute;
-    top: 35%;
-    color: rgb(103, 131, 145);
-    left: 20%;
-    display: flex;
-    text-align: center;
-    font-size: 4rem;
+    top: 25%;
+    color: rgba(93, 29, 211, 0.849);
+    right: 10%;
+    font-family: "Pacifico", cursive;
+    font-weight: 100;
+    font-style: italic;
+    font-size: 120px;
 }
