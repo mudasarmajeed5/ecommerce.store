@@ -1,4 +1,5 @@
 import React from 'react'
+import { v4 } from 'uuid'
 const Categories = () => {
     const CardsData = [
         {
@@ -60,9 +61,9 @@ const Categories = () => {
     return (
       <div className="w-full flex flex-wrap justify-center">
         {CardsData.map((item) => {
-          // let unique_id = v4();
+          let unique_id = v4();
           return (
-            <div key={item.title} className='card w-[250px] flex flex-col justify-between relative rounded-lg shadow-red-400 shadow-xl p-2 text-[--body-color] mx-4 my-4'>
+            <div key={item.unique_id} className='card w-[250px] flex flex-col justify-between relative rounded-lg shadow-red-400 shadow-xl p-2 text-[--body-color] mx-4 my-4'>
               <div className="image relative py-2">
                 <img className='w-full h-[200px] object-cover text-center rounded-md' src={item.image} alt="" />
               </div>
