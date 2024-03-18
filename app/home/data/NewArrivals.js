@@ -32,7 +32,7 @@ const NewArrivals = () => {
                         <div key={unique_id} className='card w-[200px] md:w-[250px] flex flex-col justify-between relative rounded-lg shadow-red-400 shadow-xl p-2 text-[--body-color]'>
                             <div className="image relative py-2">
                                 <span className='absolute top-[5px] left-0 my-2 mx-1 px-2 rounded-lg text-white bg-red-800'>Sale</span>
-                                <img className='w-full h-[200px] object-cover text-center rounded-md' src={item.image} alt="" />
+                                <img className='w-[180px] m-1 mx-auto h-[200px] object-cover text-center rounded-md' src={item.image} alt=""/>
                             </div>
                             <div className="item-desc flex justify-between flex-col pl-2">
                                 <div className='text-lg font-[Poppins]'>{item.title}</div>

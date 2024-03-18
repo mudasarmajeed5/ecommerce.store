@@ -61,7 +61,7 @@
 
 .Carouseltext{
     position: absolute;
-    top: 30%;
+    bottom: 0%;
     color: rgba(93, 29, 211, 0.849);
     left: 50%;
     transform: translate(-50%,-50%);
