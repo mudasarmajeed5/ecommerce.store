@@ -47,9 +47,6 @@ const Categories = () => {
             "title": "Setting powder"
         },
         {
-            "title": "Setting spray"
-        },
-        {
             "title": "Makeup brushes/tools"
         },
         {
