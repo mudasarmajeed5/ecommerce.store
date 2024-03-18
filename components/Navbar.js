@@ -52,11 +52,11 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className='flex flex-col-reverse md:flex-row items-center p-2 xl:p-3 2xl:p-4 md:justify-between'>
-      <div className='hidden md:block logo font-[Poppins] text-xl font-bold md:font-normal xl:text-2xl 2xl:text-4xl w-full text-center md:w-1/4'>
+    <nav className='flex sticky w-screen  top-0 z-[100] flex-col-reverse md:flex-row items-center p-2 xl:p-3 2xl:p-4 md:justify-between'>
+      <div className='hidden md:block logo font-[Poppins] text-xl font-bold md:font-normal xl:text-2xl 2xl:text-4xl w-full text-center md:w-[30%]'>
       EcoGlow Organics
       </div>
-      <div className='hidden navbar w-full md:w-[70%] md:flex justify-center py-2'>
+      <div className='hidden navbar md:flex justify-center py-2'>
         <ul className='flex gap-3 2xl:gap-5 items-center justify-center'>
           {PCNavLinks.map((item, index) => {
             const isActive = pathname.startsWith(item.link);
@@ -70,15 +70,13 @@ const Navbar = () => {
           })}
         </ul>
       </div>
-      <div className='search_login py-2 flex items-center gap-2 w-full md:justify-center md:w-1/4 '>
+      <div className='search_login py-2 flex items-center gap-2 md:justify-center md:w-[30%] '>
         <div className="search flex items-center gap-2">
           <input className='rounded-2xl md:rounded-full bg-[#4A001F] text-white text-lg py-1 md:text-[16px] px-3 md:px-2 md:py-0 w-[80vw] md:w-auto' type="search" placeholder='Search for Something' />
           <FaSearch />
+          <Link href="/profile" className='text-2xl'><FaRegUserCircle /></Link>
         </div>
-        <div className="login text-2xl p-1 hover:cursor-pointer hover:text-[#97EFE9]">
-          <Link href="/profile"><FaRegUserCircle /></Link>
-        </div>
-        <div className="md:hidden flex fixed left-0 bottom-0 w-full justify-around bg-[#2E0219] p-2">
+        <div className="md:hidden z-[100] flex fixed left-0 bottom-0 w-full justify-around bg-[#2E0219] p-2">
           {mobileNavLinks.map((item, index) => {
             const isActive = pathname.startsWith(item.link);
             return (

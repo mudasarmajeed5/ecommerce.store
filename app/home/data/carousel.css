@@ -61,11 +61,17 @@
 
 .Carouseltext{
     position: absolute;
-    top: 25%;
+    top: 30%;
     color: rgba(93, 29, 211, 0.849);
-    right: 10%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     font-family: "Pacifico", cursive;
     font-weight: 100;
     font-style: italic;
-    font-size: 120px;
+    font-size: 50px;
+}
+@media only screen and (max-width:767px){
+    .Carouseltext{
+        font-size: 30px;
+    }
 }

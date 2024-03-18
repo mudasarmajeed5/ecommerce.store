@@ -46,12 +46,12 @@ const Carousel = () => {
     }
 
     return (
-        <div className="carousel w-screen">
+        <div className="carousel w-screen ">
             <MdArrowBackIos className="arrow arrow-left" onClick={preSlide} />
             {Imagedata.map((image, index) => {
                 return (
                     <div key={index} className="Carousel-main">
-                        <img src={image.src} draggable={false} alt={image.alt} key={image.id} className={`${slide == index ? "slide" : "slide slide-hidden"} object-cover w-full md:w-[93vw] object-center h-[55vh] md:h-[45vh]`} ></img>
+                        <img src={image.src} draggable={false} alt={image.alt} key={image.id} className={`${slide == index ? "slide" : "slide slide-hidden"} object-cover md:w-[93vw] object-center h-[45vh] md:h-[45vh]`} ></img>
                         <div className={`${slide == index ? "slide Carouseltext" : "slide slide-hidden"}`}>
                             {image.text}
                         </div>

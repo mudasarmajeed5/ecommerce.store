@@ -4,7 +4,7 @@ import NewArrivals from './data/NewArrivals'
 const page = () => {
 
   return (
-    <div className='w-screen'>
+    <div>
       <Carousel />
       <NewArrivals/>
     </div>
