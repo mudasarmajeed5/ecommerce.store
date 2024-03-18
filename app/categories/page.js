@@ -63,7 +63,7 @@ const Categories = () => {
           return (
             <div key={item.title} className='card w-[250px] flex flex-col justify-between relative rounded-lg shadow-red-400 shadow-xl p-2 text-[--body-color] mx-4 my-4'>
               <div className="image relative py-2">
-                <img className='w-full h-[200px] object-cover text-center rounded-md' src={item.image} alt="" />
+                <img className='w-full h-[200px] object-cover text-center rounded-md' src={item.image} alt={item.title} />
               </div>
               <div className="item-desc flex justify-between flex-col pl-2">
                 <div className='text-lg font-mono'>{item.title}</div>
