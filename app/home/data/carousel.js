@@ -46,7 +46,7 @@ const Carousel = () => {
     }
 
     return (
-        <div className="carousel w-screen ">
+        <div className="carousel w-full ">
             <MdArrowBackIos className="arrow arrow-left" onClick={preSlide} />
             {Imagedata.map((image, index) => {
                 return (
