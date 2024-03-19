@@ -1,88 +1,87 @@
 [
     {
-        "title": "Title 1",
-        "image": "",
-        "price": "Price 1"
-      },
-      {
-        "title": "Title 2",
-        "image": "",
-        "price": "Price 2"
+        "title": "Lipstick",
+        "image": "https://media.istockphoto.com/id/1184976308/photo/makeup-artist-applies-skintone.jpg?s=612x612&w=0&k=20&c=HVO9a50LWspdcMvMHj1ohNPMX-AxO4cjO_GhQTUhIRk=",
+        "price": "Rs.150"
     },
     {
-        "title": "Title 3",
-        "image": "",
-        "price": "Price 3"
+        "title": "Mascara",
+        "image": "https://c8.alamy.com/comp/2BCAYCE/vector-foundation-concealer-serum-metallic-pearlised-pink-tube-in-pink-background-2BCAYCE.jpg",
+        "price": "Rs.200"
     },
     {
-        "title": "Title 3",
-        "image": "",
-        "price": "Price 3"
+        "title": "Foundation",
+        "image": "https://t4.ftcdn.net/jpg/05/02/19/23/360_F_502192302_wiB17xkWXddb8aqYUnwG3aKBgV16Odvv.jpg",
+        "price": "Rs.300"
     },
     {
-        "title": "Title 4",
-        "image": "",
-        "price": "Price 4"
+        "title": "Blush",
+        "image": "https://m.media-amazon.com/images/I/41jGDPV3UnS.jpg",
+        "price": "Rs.250"
     },
     {
-        "title": "Title 5",
-        "image": "",
-        "price": "Price 5"
+        "title": "Eyeshadow",
+        "image": "https://as2.ftcdn.net/v2/jpg/02/86/94/11/1000_F_286941163_XRUUAi3GUSkAC7Qb5HeZ87S2fHLpGEad.jpg",
+        "price": "Rs.350"
     },
     {
-        "title": "Title 6",
-        "image": "",
-        "price": "Price 6"
+        "title": "Powder",
+        "image": "https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNsb3RoZXN8ZW58MHx8MHx8fDA%3D",
+        "price": "Rs.400"
     },
     {
-        "title": "Title 7",
-        "image": "",
-        "price": "Price 7"
+        "title": "Compact",
+        "image": "https://media.istockphoto.com/id/1184976308/photo/makeup-artist-applies-skintone.jpg?s=612x612&w=0&k=20&c=HVO9a50LWspdcMvMHj1ohNPMX-AxO4cjO_GhQTUhIRk=",
+        "price": "Rs.300"
     },
     {
-        "title": "Title 8",
-        "image": "",
-        "price": "Price 8"
+        "title": "Highlighter",
+        "image": "https://c8.alamy.com/comp/2BCAYCE/vector-foundation-concealer-serum-metallic-pearlised-pink-tube-in-pink-background-2BCAYCE.jpg",
+        "price": "Rs.350"
     },
     {
-        "title": "Title 9",
-        "image": "",
-        "price": "Price 9"
+        "title": "Primer",
+        "image": "https://t4.ftcdn.net/jpg/05/02/19/23/360_F_502192302_wiB17xkWXddb8aqYUnwG3aKBgV16Odvv.jpg",
+        "price": "Rs.200"
     },
     {
-        "title": "Title 10",
-        "image": "",
-        "price": "Price 10"
+        "title": "Concealer",
+        "image": "https://m.media-amazon.com/images/I/41jGDPV3UnS.jpg",
+        "price": "Rs.250"
     },
     {
-        "title": "Title 11",
-        "image": "",
-        "price": "Price 11"
+        "title": "Setting Spray",
+        "image": "https://as2.ftcdn.net/v2/jpg/02/86/94/11/1000_F_286941163_XRUUAi3GUSkAC7Qb5HeZ87S2fHLpGEad.jpg",
+        "price": "Rs.300"
     },
     {
-        "title": "Title 12",
-        "image": "",
-        "price": "Price 12"
+        "title": "Bronzer",
+        "image": "https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNsb3RoZXN8ZW58MHx8MHx8fDA%3D",
+        "price": "Rs.400"
     },
     {
-        "title": "Title 13",
-        "image": "",
-        "price": "Price 13"
+        "title": "Lip Gloss",
+        "image": "https://media.istockphoto.com/id/1184976308/photo/makeup-artist-applies-skintone.jpg?s=612x612&w=0&k=20&c=HVO9a50LWspdcMvMHj1ohNPMX-AxO4cjO_GhQTUhIRk=",
+        "price": "Rs.200"
     },
     {
-        "title": "Title 14",
-        "image": "",
-        "price": "Price 14"
+        "title": "Eyeliner",
+        "image": "https://c8.alamy.com/comp/2BCAYCE/vector-foundation-concealer-serum-metallic-pearlised-pink-tube-in-pink-background-2BCAYCE.jpg",
+        "price": "Rs.150"
     },
     {
-        "title": "Title 15",
-        "image": "",
-        "price": "Price 15"
+        "title": "Makeup Remover",
+        "image": "https://t4.ftcdn.net/jpg/05/02/19/23/360_F_502192302_wiB17xkWXddb8aqYUnwG3aKBgV16Odvv.jpg",
+        "price": "Rs.250"
     },
     {
-        "title": "Title 16",
-        "image": "",
-        "price": "Price 16"
+        "title": "Face Mask",
+        "image": "https://m.media-amazon.com/images/I/41jGDPV3UnS.jpg",
+        "price": "Rs.300"
+    },
+    {
+        "title": "Face Wash",
+        "image": "https://as2.ftcdn.net/v2/jpg/02/86/94/11/1000_F_286941163_XRUUAi3GUSkAC7Qb5HeZ87S2fHLpGEad.jpg",
+        "price": "Rs.200"
     }
 ]
-

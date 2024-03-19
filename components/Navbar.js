@@ -62,7 +62,7 @@ const Navbar = () => {
             const isActive = pathname.startsWith(item.link);
             return (
               <li key={index} id='psuedo_underline' className='list-none text-md'>
-                <Link href={item.link} className={isActive?"text-[#97EFE9]":""}>
+                <Link href={item.link} className={isActive?"text-[#97EFE9] underline underline-offset-8":""}>
                   {item.text}
                 </Link>
               </li>
@@ -81,7 +81,7 @@ const Navbar = () => {
             const isActive = pathname.startsWith(item.link);
             return (
               <li key={index} className='list-none text-2xl'>
-                <Link href={item.link} className={`${isActive?"text-[#97EFE9]":""} flex flex-col items-center`}>
+                <Link href={item.link} className={`${isActive?"text-[#97EFE9] ":""} flex flex-col items-center`}>
                   {item.icon}
                   <span className="text-sm">{item.text}</span>
                 </Link>
