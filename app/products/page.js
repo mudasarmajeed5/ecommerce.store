@@ -110,27 +110,26 @@ const page = () => {
 
 
   return (
-    <div>
+    <div className='grid grid-cols-2'>
       <div className='Filters'>
         <div className='Listings'>
           {Filters.map((item, index) => {
             return (
-              <ul>
-                <li>
+                <>
                   <div key={index}>
                     {item.filter}
                   </div>
-                  <ol>
+                  <ul className=' ml-8 '>
                     {Ptypes.map((it, index) => (
                       <li key={index}>{it.ilter}</li>
                     ))}
-                  </ol>
-                </li>
-              </ul>
+                  </ul>
+                </>
             )
           })}
         </div>
       </div>
+      <div className='Products'>
       <div className="new-arrivals text-center mt-4 p-2 text-lg md:text-xl xl:text-2xl 2xl:text-4xl font-[Poppins] text-[--navbar-color]">Hot Deals</div>
       <div className="cards md:flex-row flex flex-wrap items-center justify-around w-full">
         {Products.map((item) => {
@@ -147,6 +146,7 @@ const page = () => {
             </div>
           )
         })}
+      </div>
       </div>
     </div>
   )
