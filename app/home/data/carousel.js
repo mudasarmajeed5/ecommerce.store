@@ -48,7 +48,7 @@ const Carousel = () => {
             {Imagedata.map((image, index) => {
                 return (
                     <div key={index} className="Carousel-main">
-                        <img src={image.src} draggable={false} alt={image.alt} key={image.id} className={`${slide == index ? "slide" : "slide slide-hidden"} object-cover md:w-[93vw] object-left h-[45vh] md:h-[45vh]`} ></img>
+                        <img src={image.src} draggable={false} alt={image.alt} key={image.id} className={`${slide == index ? "slide" : "slide slide-hidden"} object-cover md:w-[93vw] object-left h-[30vh] md:h-[45vh]`} ></img>
                         <div className={`${slide == index ? "slide Carouseltext" : "slide slide-hidden"} flex flex-col items-center`}>
                             <div className="text-blue-600">{image.text}</div>
                             <button className=" bg-blue-800 text-white text-sm px-2 py-1">Shop Now</button>
