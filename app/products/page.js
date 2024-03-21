@@ -33,9 +33,9 @@ const page = () => {
                   <div key={index} className='font-bold md:flex-col md:p-2 flex justify-around'>
                     {item.filter}
                   </div>
-                  <ul className='md:ml-8 ml-0 md:flex md:justify-start flex justify-center gap-2'>
+                  <ul className='md:ml-8 ml-0'>
                     {Ptypes.map((it, index) => (
-                      <li className='text-[--text-color] bg-[--secondary-color] px-2 py-1 hover:bg-[--navbar-color] hover:cursor-pointer transition-all duration-300' key={index}>{it.ilter}</li>
+                      <li className='text-[--text-color] bg-[--secondary-color] px-2 py-1 hover:bg-[--navbar-color] hover:cursor-pointer transition-all duration-300 mt-2' key={index}>{it.ilter}</li>
                     ))}
                   </ul>
                 </>
