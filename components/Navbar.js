@@ -87,9 +87,9 @@ const Navbar = () => {
           </ul>
         </div>
         <div className='search_login py-2 flex items-center gap-2 md:justify-center md:w-[30%] '>
-          <div className="search flex items-center gap-2">
-            <input onChange={(e) => { setsearch(e.target.value); filterSearch(e) }} value={search} className='rounded-2xl md:rounded-full bg-[#4A001F] text-white text-lg py-1 md:text-[16px] px-3 md:px-2 md:py-0 w-[80vw] md:w-auto' type="search" placeholder='Search for Something' />
-            <FaSearch />
+          <div className="">
+            {/* <input onChange={(e) => { setsearch(e.target.value); filterSearch(e) }} value={search} className='rounded-2xl md:rounded-full bg-[#4A001F] text-white text-lg py-1 md:text-[16px] px-3 md:px-2 md:py-0 w-[80vw] md:w-auto' type="search" placeholder='Search for Something' />
+            <FaSearch /> */}
             <Link href="/profile" className='text-2xl'><FaRegUserCircle /></Link>
           </div>
           <div className="md:hidden z-[100] flex fixed left-0 bottom-0 w-full justify-around bg-[#2E0219] p-2">
