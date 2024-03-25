@@ -23,24 +23,20 @@ const page = () => {
       "ilter": "Foundation"
     },
     {
-      "ilter": "Concelers"
-    },
-    {
+      "ilter": "Concelers",
       "keyword": "sex"
     }
   ]
 
-    const searchcheck = (e) => {
-      if(Ptypes.keyword==e)
-      {
-        console.log(yeah)
-      }
+    const searchcheck = () => {
+      console.log(Ptypes.keyword)
     }
 
   return (<>
     <div className="contman p-2 flex justify-center items-center w-full gap-3">
     <input onChange={(e) => { setsearch(e.target.value); filterSearch(e) }} value={search} className='rounded-2xl md:rounded-full bg-[#af245e] text-black text-lg py-1 md:text-[16px] px-3 md:px-2 md:py-0 w-[90vw] md:w-[70vw]' type="search" placeholder='Search for Something' />
     <FaSearch />
+    <button  onClick={()=>{searchcheck()}}  >dasdasdas</button>
     </div>
     <div className='flex md:flex-row flex-col'>
       <div className='Filters border-red-600 w-full md:w-1/5 text-[--secondary-color]'>
