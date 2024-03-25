@@ -35,10 +35,10 @@ const Categories = () => {
     ];
 
     return (
-      <div className="w-full md:w-[70%] mx-auto gap-2 flex flex-wrap justify-around md:justify-center">
+      <div className="w-full md:w-[70%] mx-auto gap-2 grid grid-cols-2 md:grid-cols-3 place-items-center">
         {CardsData.map((item) => {
           return (
-            <div key={item.title} className='card hover:cursor-pointer w-[170px] md:w-[230px] flex flex-col justify-between relative rounded-lg shadow-black shadow-lg hover:shadow-2xl hover:shadow-red-500 p-1 text-[--body-color] my-4 transition-all duration-300'>
+            <div key={item.title} className='card hover:cursor-pointer w-[170px] md:w-[230px] flex flex-col justify-between relative rounded-lg shadow-lg hover:shadow-2xl hover:shadow-red-500 p-1 text-[--body-color] my-4 transition-all duration-300'>
               <div className="image relative py-2">
                 <img className='w-full scale-[95%] hover:scale-[100%] transition-all duration-300 h-[170px] md:h-[220px] object-cover text-center rounded-md' src={item.imageurl} alt={item.title} />
               </div>
