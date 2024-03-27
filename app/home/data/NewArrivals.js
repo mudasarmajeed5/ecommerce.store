@@ -19,7 +19,7 @@ const NewArrivals = () => {
             "title": "Whitening cream",
             "image": Product3.src,
             "price": "Rs.550"
-        },  
+        },
         {
             "title": "Whitening cream",
             "image": Product3.src,
@@ -34,10 +34,10 @@ const NewArrivals = () => {
                 {CardsData.map((item) => {
                     let unique_id = v4();
                     return (
-                        <div key={unique_id} className='card w-[200px] md:w-[250px] flex flex-col justify-between relative rounded-lg p-2 text-[--body-color]'>
+                        <div key={unique_id} className='card w-[200px] shadow hover:shadow-2xl hover:shadow-red-800 duration-300 transition-all md:w-[250px] flex flex-col justify-between relative rounded-lg px-2 pb-2 text-[--body-color]'>
                             <div className="image relative py-2">
-                                <span className='absolute top-[5px] left-0 my-2 mx-1 px-2 rounded-lg text-white bg-red-800'>Sale</span>
-                                <img className='w-[180px] m-1 mx-auto h-[200px] object-cover text-center rounded-md' src={item.image} alt=""/>
+                                {/* <span className='absolute top-[5px] left-0 my-2 px-3 rounded-lg bg-red-400 text-black'>Sale</span> */}
+                                <img className='w-[220px] hover:scale-110 transition-all duration-300 m-1 mx-auto h-[200px] object-cover text-center rounded-md' src={item.image} alt="" />
                             </div>
                             <div className="item-desc flex justify-between flex-col pl-2">
                                 <div className='text-lg font-[Poppins]'>{item.title}</div>

@@ -19,3 +19,15 @@ body{
   margin: 0;
   padding: 0;
 }
+body::-webkit-scrollbar {
+  width: .5em;
+}
+
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(94, 2, 2, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+background-color: rgb(61, 25, 25);
+outline: 1px solid slategrey;
+}
