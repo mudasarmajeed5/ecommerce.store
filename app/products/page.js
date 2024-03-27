@@ -1,11 +1,9 @@
 "use client"
-import { Ultra } from 'next/font/google'
-import React from 'react'
+import React,{useState} from 'react'
 import Data from "./Products.json"
 import { v4 as uuidv4 } from 'uuid'
-import { useState } from 'react';
 
-const page = () => {
+const Products = () => {
   const [search, setsearch] = useState("")
   const [FilterSearch, setFilterSearch] = useState(Data)
   const Filters = [
@@ -88,4 +86,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Products

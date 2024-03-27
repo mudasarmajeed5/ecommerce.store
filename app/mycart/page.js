@@ -1,6 +1,6 @@
 import React from 'react'
 
-const page = () => {
+const Mycart = () => {
   return (
     <div className='text-black h-[70vh] flex items-center justify-center'>
       Your Products will show here
@@ -8,4 +8,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Mycart

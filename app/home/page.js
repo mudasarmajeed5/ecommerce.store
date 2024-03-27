@@ -1,7 +1,7 @@
 import React from 'react'
 import Carousel from './data/carousel'
 import NewArrivals from './data/NewArrivals'
-const page = () => {
+const HomePage = () => {
 
   return (
     <div>
@@ -11,4 +11,4 @@ const page = () => {
   )
 }
 
-export default page
+export default HomePage
