@@ -58,7 +58,18 @@
 .Carousel-main{
     position: relative;
 }
-
+.Carousel-main img{
+    /* scale: 150%; */
+    animation: scaledown 3s linear forwards;
+}
+@keyframes scaledown{
+    from{
+        scale: 120%;
+    }
+    to{
+        scale: 100%;
+    }
+}
 .Carouseltext{
     position: absolute;
     bottom: 0%;

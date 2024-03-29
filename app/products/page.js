@@ -1,8 +1,8 @@
 "use client"
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import Data from "./Products.json"
 import { v4 as uuidv4 } from 'uuid'
-
+import Link from 'next/link'
 const Products = () => {
   const [search, setsearch] = useState("")
   const [FilterSearch, setFilterSearch] = useState(Data)
@@ -14,7 +14,6 @@ const Products = () => {
       "filter": "Unstitched"
     }
   ]
-
   const Ptypes = [
     {
       "ilter": "Foundation"
@@ -82,6 +81,7 @@ const Products = () => {
           </div>
         </div>
       </div>
+   
     </>
   )
 }
