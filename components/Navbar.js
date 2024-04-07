@@ -11,7 +11,6 @@ import { MdProductionQuantityLimits } from "react-icons/md";
 import { IoIosCart } from "react-icons/io";
 import Link from 'next/link';
 const Navbar = () => {
-  const [FilterSearch, setFilterSearch] = useState(Data)
   const pathname = usePathname();
   const mobileNavLinks = [
     {
@@ -53,10 +52,6 @@ const Navbar = () => {
       text: "Products",
     },
   ];
-
-  // use this function to render the data based on the user input, make a component, fetch values of the input. 
-  // then use context hook to store the data in context/context.js and from there fetch the data and display it in the products page.
-
   
   return (
 
