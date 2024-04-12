@@ -26,7 +26,6 @@ const Products = () => {
     },
     {
       "ilter": "Concelers",
-      "keyword": "Toys"
     }
   ]
 
@@ -37,6 +36,17 @@ const Products = () => {
     });
     setFilterSearch(filteredData);
   };
+  
+  const filtering = (fiter) => {
+    const filTerm = fiter.toLowerCase();
+    console.log(filTerm)
+
+    const filData = Data.filter((item) => {
+      return item.tag.toLowerCase().includes(filTerm.toLowerCase());
+    });
+    setFilterSearch(filData);
+  };
+  
   return (
     <>
         <div className="contman ml-[0%] xl:p-3 2xl:p-4  w-[20%] md:justify-end fixed top-0 left-0 md:right-20 z-[101] p-2 md:flex md:ml-[78%] justify-center items-center gap-3">
@@ -54,7 +64,7 @@ const Products = () => {
                     </div>
                     <ul className='md:ml-8 ml-0'>
                       {Ptypes.map((ptypeItem, ptypeIndex) => (
-                        <li key={uuidv4()} className='text-[--text-color] bg-[--secondary-color] px-2 py-1 hover:bg-[--navbar-color] hover:cursor-pointer transition-all duration-300 mt-2'>{ptypeItem.ilter}</li>
+                        <li key={uuidv4()} onClick={()=>{filtering(ptypeItem.ilter)}} className='text-[--text-color] bg-[--secondary-color] px-2 py-1 hover:bg-[--navbar-color] hover:cursor-pointer transition-all duration-300 mt-2'>{ptypeItem.ilter}</li>
                       ))}
                     </ul>
                   </React.Fragment>
@@ -78,6 +88,7 @@ const Products = () => {
                     </div>
                     <div className="item-desc flex justify-between flex-col pl-2">
                       <div className='text-lg font-[Poppins]'>{item.title}</div>
+                      <div className=' hidden' >{item.tag}</div>
                       <div className='font-bold text-black' >{item.price}</div>
                       <div className="flex justify-between "><button onClick={() => AddCurrentItem(item)} className="hover:bg-black mr-1 w-4/5 text-sm transition-all px-2 py-1 rounded-md text-white bg-gray-900 ">Add item</button><button className='hover:bg-black transition-all px-2 py-1 rounded-md text-sm text-white bg-gray-900'>Details</button></div>
                     </div>

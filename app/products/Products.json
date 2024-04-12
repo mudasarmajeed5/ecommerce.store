@@ -1,86 +1,103 @@
 [
     {
         "title": "Lipstick",
+        "tag" : "Foundation",
         "image": "https://media.istockphoto.com/id/1184976308/photo/makeup-artist-applies-skintone.jpg?s=612x612&w=0&k=20&c=HVO9a50LWspdcMvMHj1ohNPMX-AxO4cjO_GhQTUhIRk=",
         "price": "Rs.150"
     },
     {
+        "tag" : "Foundation",
         "title": "Mascara",
         "image": "https://c8.alamy.com/comp/2BCAYCE/vector-foundation-concealer-serum-metallic-pearlised-pink-tube-in-pink-background-2BCAYCE.jpg",
         "price": "Rs.200"
     },
     {
+        "tag" : "Foundation",
         "title": "Foundation",
         "image": "https://t4.ftcdn.net/jpg/05/02/19/23/360_F_502192302_wiB17xkWXddb8aqYUnwG3aKBgV16Odvv.jpg",
         "price": "Rs.300"
     },
     {
+        "tag" : "Foundation",
         "title": "Blush",
         "image": "https://m.media-amazon.com/images/I/41jGDPV3UnS.jpg",
         "price": "Rs.250"
     },
     {
+        "tag" : "Foundation",
         "title": "Eyeshadow",
         "image": "https://as2.ftcdn.net/v2/jpg/02/86/94/11/1000_F_286941163_XRUUAi3GUSkAC7Qb5HeZ87S2fHLpGEad.jpg",
         "price": "Rs.350"
     },
     {
+        "tag" : "Foundation",
         "title": "Powder",
         "image": "https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNsb3RoZXN8ZW58MHx8MHx8fDA%3D",
         "price": "Rs.400"
     },
     {
+        "tag" : "Foundation",
         "title": "Compact",
         "image": "https://media.istockphoto.com/id/1184976308/photo/makeup-artist-applies-skintone.jpg?s=612x612&w=0&k=20&c=HVO9a50LWspdcMvMHj1ohNPMX-AxO4cjO_GhQTUhIRk=",
         "price": "Rs.300"
     },
     {
+        "tag" : "Foundation",
         "title": "Highlighter",
         "image": "https://c8.alamy.com/comp/2BCAYCE/vector-foundation-concealer-serum-metallic-pearlised-pink-tube-in-pink-background-2BCAYCE.jpg",
         "price": "Rs.350"
     },
     {
+        "tag" : "Foundation",
         "title": "Primer",
         "image": "https://t4.ftcdn.net/jpg/05/02/19/23/360_F_502192302_wiB17xkWXddb8aqYUnwG3aKBgV16Odvv.jpg",
         "price": "Rs.200"
     },
     {
+        "tag" : "Foundation",
         "title": "Concealer",
         "image": "https://m.media-amazon.com/images/I/41jGDPV3UnS.jpg",
         "price": "Rs.250"
     },
     {
+        "tag" : "Foundation",
         "title": "Setting Spray",
         "image": "https://as2.ftcdn.net/v2/jpg/02/86/94/11/1000_F_286941163_XRUUAi3GUSkAC7Qb5HeZ87S2fHLpGEad.jpg",
         "price": "Rs.300"
     },
     {
+        "tag" : "Foundation",
         "title": "Bronzer",
         "image": "https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNsb3RoZXN8ZW58MHx8MHx8fDA%3D",
         "price": "Rs.400"
     },
     {
+        "tag" : "Foundation",
         "title": "Lip Gloss",
         "image": "https://media.istockphoto.com/id/1184976308/photo/makeup-artist-applies-skintone.jpg?s=612x612&w=0&k=20&c=HVO9a50LWspdcMvMHj1ohNPMX-AxO4cjO_GhQTUhIRk=",
         "price": "Rs.200"
     },
     {
+        "tag" : "Foundation",
         "title": "Eyeliner",
         "image": "https://c8.alamy.com/comp/2BCAYCE/vector-foundation-concealer-serum-metallic-pearlised-pink-tube-in-pink-background-2BCAYCE.jpg",
         "price": "Rs.150"
     },
     {
         "title": "Makeup Remover",
+        "tag" : "Concelers",
         "image": "https://t4.ftcdn.net/jpg/05/02/19/23/360_F_502192302_wiB17xkWXddb8aqYUnwG3aKBgV16Odvv.jpg",
         "price": "Rs.250"
     },
     {
         "title": "Face Mask",
+        "tag" : "Concelers",
         "image": "https://m.media-amazon.com/images/I/41jGDPV3UnS.jpg",
         "price": "Rs.300"
     },
     {
         "title": "Face Wash",
+        "tag" : "Concelers",
         "image": "https://as2.ftcdn.net/v2/jpg/02/86/94/11/1000_F_286941163_XRUUAi3GUSkAC7Qb5HeZ87S2fHLpGEad.jpg",
         "price": "Rs.200"
     }
