@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
 import SessionWrapper from "./component/SessionWrapper";
+import ReduxProvider from "./redux/ReduxProvider";
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "EcoGlow Organics | Nature's Beauty, Naturally Yours",
@@ -11,7 +12,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <ReduxProvider>
+
+      <html lang="en">
         <SessionWrapper>
           <body className={inter.className}>
             <Navbar />
@@ -19,6 +22,7 @@ export default function RootLayout({ children }) {
             <Footer />
           </body>
         </SessionWrapper>
-    </html>
+      </html>
+    </ReduxProvider>
   );
 }

@@ -1,15 +1,18 @@
 "use client"
 import React, { useState } from 'react'
 import Data from "./Products.json"
-import { v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid';
+import { useSelector, useDispatch } from 'react-redux'
+import { AddItem } from '../redux/Cart/CartItems'
 const Products = () => {
+  const cartitems = useSelector((state) => state.CartItem.Mycart);
+  console.log(cartitems);
+  const dispatch = useDispatch();
   const [search, setsearch] = useState("");
   const [FilterSearch, setFilterSearch] = useState(Data);
-  const items = [];
 
   const AddCurrentItem = (item) => {
-    items.push(item)
-    console.log(items);
+    dispatch(AddItem(item));
   }
 
   const Filters = [
