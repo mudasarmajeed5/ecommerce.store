@@ -4,4 +4,4 @@ export const store = configureStore({
   reducer: {
     CartItem:CartItemsSliceReducer,
   },
-})
+});

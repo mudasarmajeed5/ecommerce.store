@@ -10,7 +10,9 @@ export const CartItemsSlice = createSlice({
       state.MyCart = [...state.MyCart, action.payload];
     },
     RemoveItem:(state,action)=>{
+      let selectedItem = action.payload;
       console.log("For now nothing. will add the functionality later.");
+      
     }
   },
 });

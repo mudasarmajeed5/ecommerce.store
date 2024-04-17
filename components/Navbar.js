@@ -71,7 +71,7 @@ const Navbar = () => {
                   {item.text}
                 </Link>
                 {isCartItem && (
-                  <span className='absolute top-[-5px] font-bold text-lime-300 right-[-15px] p-1 rounded-full text-sm '>{Cart_items_length}</span>
+                  <span className='absolute top-[-5px] font-bold text-lime-300 right-[-18px] p-1 rounded-full text-sm '>{Cart_items_length}</span>
                 )}
               </li>
             );
@@ -87,12 +87,16 @@ const Navbar = () => {
         <div className="md:hidden z-[100] flex fixed left-0 bottom-0 w-full justify-around bg-[#2E0219] p-2">
           {mobileNavLinks.map((item, index) => {
             const isActive = pathname.startsWith(item.link);
+            const isCartItem = index === 2;
             return (
-              <li key={index} className='list-none text-2xl'>
+              <li key={index} className='list-none text-2xl relative'>
                 <Link href={item.link} className={`${isActive ? "text-[#97EFE9] " : ""} flex flex-col items-center`}>
                   {item.icon}
                   <span className="text-sm">{item.text}</span>
                 </Link>
+                {isCartItem && (
+                  <span className='absolute top-[-5px] font-bold text-lime-300 right-[-18px] p-1 rounded-full text-sm '>{Cart_items_length}</span>
+                )}
               </li>
             );
           })}

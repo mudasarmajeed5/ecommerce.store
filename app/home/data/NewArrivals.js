@@ -1,9 +1,20 @@
+"use client"
 import React from 'react'
 import { v4 } from 'uuid'
 import Product1 from "./Images/CardImages/Product1.jpg"
 import Product2 from "./Images/CardImages/Product2.jpg"
 import Product3 from "./Images/CardImages/Product3.jpg"
+import { AddItem } from '@/app/redux/Cart/CartItems';   
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux'
 const NewArrivals = () => {
+    const notification = (message) => toast.success(`${message}`)
+    const dispatch = useDispatch();
+    const AddCurrentItem = (item) => {
+        dispatch(AddItem(item));
+        notification("Product has been added.");
+    }
     const CardsData = [
         {
             "title": "Lipstick | Lipbalm",
@@ -42,12 +53,21 @@ const NewArrivals = () => {
                             <div className="item-desc flex justify-between flex-col pl-2">
                                 <div className='text-lg font-[Poppins]'>{item.title}</div>
                                 <div className='font-bold text-black' >{item.price}</div>
-                                <div className="flex justify-between "><button className="hover:bg-black mr-1 w-4/5 text-sm transition-all px-2 py-1 rounded-md text-white bg-gray-900 ">Add item</button><button className='hover:bg-black transition-all px-2 py-1 rounded-md text-sm text-white bg-gray-900'>Details</button></div>
+                                <div className="flex justify-between "><button onClick={() => AddCurrentItem(item)} className="hover:bg-black mr-1 w-4/5 text-sm transition-all px-2 py-1 rounded-md text-white bg-gray-900 ">Add item</button><button className='hover:bg-black transition-all px-2 py-1 rounded-md text-sm text-white bg-gray-900'>Details</button></div>
                             </div>
                         </div>
                     )
                 })}
             </div>
+            <ToastContainer position="top-right" autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark" />
         </div>
     )
 }
