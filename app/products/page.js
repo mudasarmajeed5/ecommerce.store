@@ -9,11 +9,9 @@ const Products = () => {
   const dispatch = useDispatch();
   const [search, setsearch] = useState("");
   const [FilterSearch, setFilterSearch] = useState(Data);
-  const notification = (message) => toast.success(`${message}`)
   const AddCurrentItem = (item,id) => {
     const newItem = { ...item, id: id };
     dispatch(AddItem(newItem));
-    notification("Product has been added.");
   }
 
   const Filters = [
@@ -53,7 +51,7 @@ const Products = () => {
     <>
       
       <div className="contman ml-[0%] xl:p-3 2xl:p-4  w-[20%] md:justify-end fixed top-0 left-0 md:right-20 z-[101] p-2 md:flex md:ml-[78%] justify-center items-center gap-3">
-        <input onChange={(e) => { setsearch(e.target.value); filterSearch(e) }} value={search} className='rounded-2xl md:rounded-full text-white bg-[--body-color] mt-1 py-1 md:text-[16px] px-3 md:px-2 md:py-1 w-[85vw] md:w-[20vw]' type="search" placeholder='Search for Something' />
+        <input onChange={(e) => { setsearch(e.target.value); filterSearch(e) }} value={search} className='rounded-2xl md:rounded-full text-white bg-[--body-color] mt-1 py-1 md:text-[16px] px-6 mr-6 md:px-2 md:py-1 w-[85vw] md:w-[20vw]' type="search" placeholder='Search for Something' />
       </div>
 
       <div className='flex md:flex-row flex-col'>

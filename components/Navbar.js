@@ -11,7 +11,9 @@ import { IoIosCart } from "react-icons/io";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 const Navbar = () => {
+  const {data:session} = useSession();
   const pathname = usePathname();
   const cartitems = useSelector((state) => state.CartItem.MyCart);
   const Cart_items_length = cartitems.length;
@@ -74,18 +76,18 @@ const Navbar = () => {
                   {item.text}
                 </Link>
                 {isCartItem && (
-                  <span className='absolute top-[-5px] font-bold text-lime-300 right-[-18px] p-1 rounded-full text-sm '>{Cart_items_length}</span>
+                  <span className='absolute top-[-5px] font-bold text-lime-300 xl:right-[-14px] 2xl:right-[-18px] p-1 rounded-full text-sm '>{Cart_items_length}</span>
                 )}
               </li>
             );
           })}
         </ul>
       </div>
-      <div className='search_login flex  py-2 items-center gap-2 w-full justify-end  md:w-[30%] '>
-        <div className="flex w-full justify-between md:justify-end">
+      <div className='search_login flex items-center gap-2 w-full justify-end md:w-[30%] '>
+        <div className="flex w-full justify-between items-center py-2 md:py-0 md:justify-end">
           <span className='md:hidden'>Find a Product? <Link href="/products" className="text-red-500 mx-1">Search here</Link></span>
           <span className='hidden md:block md:pr-5'><Link href="/products" className="text-red-500 mx-1">Search here</Link></span>
-          <Link href="/profile" className='text-2xl rigth-0'><FaRegUserCircle /></Link>
+          <Link href="/profile" className='text-2xl'>{session ? <img width={34} className=' rounded-full' src={session.user.image}  alt="" /> :<FaRegUserCircle/> }</Link>
         </div>
         <div className="md:hidden z-[100] flex fixed left-0 bottom-0 w-full justify-around bg-[#2E0219] p-2">
           {mobileNavLinks.map((item, index) => {

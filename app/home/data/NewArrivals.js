@@ -6,36 +6,33 @@ import Product2 from "./Images/CardImages/Product2.jpg"
 import Product3 from "./Images/CardImages/Product3.jpg"
 import { AddItem } from '@/app/redux/Cart/CartItems';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux'
 const NewArrivals = () => {
-    const notification = (message) => toast.success(`${message}`)
     const dispatch = useDispatch();
     const AddCurrentItem = (item, id) => {
         const newItem = { ...item, id: id };
         dispatch(AddItem(newItem));
-        notification("Product has been added.");
     }
     const CardsData = [
         {
             "title": "Lipstick | Lipbalm",
             "image": Product1.src,
-            "price": "Rs.5000"
+            "price": 5000
         },
         {
             "title": "Eyeshadow Palette",
             "image": Product2.src,
-            "price": "Rs.250"
+            "price": 250
         },
         {
             "title": "Whitening cream",
             "image": Product3.src,
-            "price": "Rs.550"
+            "price": 550
         },
         {
             "title": "Whitening cream",
             "image": Product3.src,
-            "price": "Rs.550"
+            "price": 550
         }
     ];
 
@@ -48,7 +45,7 @@ const NewArrivals = () => {
                     return (
                         <div key={unique_id} className='card w-[200px] shadow hover:shadow-2xl hover:shadow-red-800 duration-300 transition-all md:w-[250px] flex flex-col justify-between relative rounded-lg px-2 pb-2 text-[--body-color]'>
                             <div className="image relative py-2">
-                                {/* <span className='absolute top-[5px] left-0 my-2 px-3 rounded-lg bg-red-400 text-black'>Sale</span> */}
+                             
                                 <img className='w-[220px] hover:scale-110 transition-all duration-300 m-1 mx-auto h-[200px] object-cover text-center rounded-md' src={item.image} alt="" />
                             </div>
                             <div className="item-desc flex justify-between flex-col pl-2">
