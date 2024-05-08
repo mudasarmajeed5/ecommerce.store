@@ -1,18 +1,18 @@
 "use client"
 import React, { useState } from 'react'
 import Data from "./Products.json"
-import { v4 as uuidv4 } from 'uuid';
+import {v4} from 'uuid';
+import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux'
 import { AddItem } from '../redux/Cart/CartItems'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 const Products = () => {
   const dispatch = useDispatch();
   const [search, setsearch] = useState("");
   const [FilterSearch, setFilterSearch] = useState(Data);
   const notification = (message) => toast.success(`${message}`)
-  const AddCurrentItem = (item) => {
-    dispatch(AddItem(item));
+  const AddCurrentItem = (item,id) => {
+    const newItem = { ...item, id: id };
+    dispatch(AddItem(newItem));
     notification("Product has been added.");
   }
 
@@ -58,7 +58,7 @@ const Products = () => {
 
       <div className='flex md:flex-row flex-col'>
         <div className='Filters border-red-600 w-full md:w-1/5 text-[--secondary-color]'>
-          <div key={uuidv4()} className='Listings md:block flex justify-around'>
+          <div key={v4()} className='Listings md:block flex justify-around'>
             {Filters.map((filterItem, filterIndex) => {
               return (
                 <div key={filterIndex}>
@@ -67,7 +67,7 @@ const Products = () => {
                   </div>
                   <ul className='md:ml-8 ml-0'>
                     {Ptypes.map((ptypeItem) => (
-                      <li key={uuidv4()} onClick={() => { filtering(ptypeItem.ilter) }} className='text-[--text-color] bg-[--secondary-color] px-2 py-1 hover:bg-[--navbar-color] hover:cursor-pointer transition-all duration-300 mt-2'>{ptypeItem.ilter}</li>
+                      <li key={v4()} onClick={() => { filtering(ptypeItem.ilter) }} className='text-[--text-color] bg-[--secondary-color] px-2 py-1 hover:bg-[--navbar-color] hover:cursor-pointer transition-all duration-300 mt-2'>{ptypeItem.ilter}</li>
                     ))}
                   </ul>
                 </div>
@@ -93,24 +93,14 @@ const Products = () => {
                     <div className='text-lg font-[Poppins]'>{item.title}</div>
                     <div className=' hidden' >{item.tag}</div>
                     <div className='font-bold text-black' >{item.price}</div>
-                    <div className="flex justify-between "><button onClick={() => AddCurrentItem(item)} className="hover:bg-black mr-1 w-4/5 text-sm transition-all px-2 py-1 rounded-md text-white bg-gray-900 ">Add item</button><button className='hover:bg-black transition-all px-2 py-1 rounded-md text-sm text-white bg-gray-900'>Details</button></div>
+                    <div className="flex justify-between "><button onClick={() => AddCurrentItem(item,v4())} className="hover:bg-black mr-1 w-4/5 text-sm transition-all px-2 py-1 rounded-md text-white bg-gray-900 ">Add item</button><button className='hover:bg-black transition-all px-2 py-1 rounded-md text-sm text-white bg-gray-900'>Details</button></div>
                   </div>
                 </div>
               )
             })}
           </div>
         </div>
-
       </div>
-      <ToastContainer position="top-right" autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false} 
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark" />
     </>
   )
 }

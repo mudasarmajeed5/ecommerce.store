@@ -6,6 +6,7 @@
   --body-color:#4A001F;
   --secondary-color:#6A0F49;
   --third-color:#A7C4C2;
+  --cart-theme:#d88684;
 }
 @tailwind base;
 @tailwind components;

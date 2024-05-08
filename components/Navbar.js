@@ -8,6 +8,8 @@ import { BiSolidCategory } from "react-icons/bi";
 import { IoMdHome } from "react-icons/io";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { IoIosCart } from "react-icons/io";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
 const Navbar = () => {
   const pathname = usePathname();
@@ -55,7 +57,8 @@ const Navbar = () => {
   ];
 
   return (
-
+    <>
+    <ToastContainer autoClose={2000} theme='dark' />
     <nav className='flex sticky w-full  top-0 z-[100] flex-col-reverse md:flex-row items-center p-2 xl:p-3 2xl:p-4 md:justify-between'>
       <div className='hidden md:block logo font-[Poppins] text-xl md:font-light xl:text-2xl 2xl:text-4xl w-full text-center md:w-[30%]'>
         <span className="text-[--text-color] ecologo">Eco</span>Glow <span className="text-[--text-color] orglogo">Org</span>anics
@@ -103,10 +106,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-
-
-
-
+    </>
   )
 }
 
