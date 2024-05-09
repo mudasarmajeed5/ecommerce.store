@@ -5,7 +5,7 @@ import Product1 from "./Images/CardImages/Product1.jpg"
 import Product2 from "./Images/CardImages/Product2.jpg"
 import Product3 from "./Images/CardImages/Product3.jpg"
 import { AddItem } from '@/app/redux/Cart/CartItems';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { useDispatch } from 'react-redux'
 const NewArrivals = () => {
     const dispatch = useDispatch();
@@ -57,15 +57,6 @@ const NewArrivals = () => {
                     )
                 })}
             </div>
-            <ToastContainer position="top-right" autoClose={1000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="dark" />
         </div>
     )
 }
