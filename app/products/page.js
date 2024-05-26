@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import Data from "./Products.json"
 import {v4} from 'uuid';
-import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux'
 import { AddItem } from '../redux/Cart/CartItems'
 const Products = () => {
@@ -10,7 +9,7 @@ const Products = () => {
   const [search, setsearch] = useState("");
   const [FilterSearch, setFilterSearch] = useState(Data);
   const AddCurrentItem = (item,id) => {
-    const newItem = { ...item, id: id };
+    const newItem = { ...item, id: id }; 
     dispatch(AddItem(newItem));
   }
 

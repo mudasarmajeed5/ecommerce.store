@@ -4,8 +4,6 @@ import { signOut, useSession } from 'next-auth/react'
 const NavbarDropDown = () => {
   const { data: session } = useSession();
   const [dropdownVisible, setDropdownVisible] = useState(false);
-
-
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
@@ -13,19 +11,10 @@ const NavbarDropDown = () => {
   return (
     <>
       <div>
-        <button
-
-          id="dropdownDefaultButton"
-          data-dropdown-toggle="dropdown"
-          type="button"
-          onClick={toggleDropdown}
-
-        >
-          <img className='rounded-full top-1 relative' src={session.user.image} width={34} alt="" />
-
-        </button>
+        <span id="dropdownDefaultButton" data-dropdown-toggle="dropdown" type="button" onClick={toggleDropdown}>
+            <img className='rounded-full top-1 relative' src={session.user.image} width={34} alt="" />
+        </span>
         <div
-
           id="dropdown"
           className={`z-10 ${dropdownVisible ? '' : 'hidden'} absolute right-4 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
         >

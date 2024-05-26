@@ -7,8 +7,8 @@ export const CartItemsSlice = createSlice({
   },
   reducers: {
     AddItem: (state, action) => {
-      toast.success('Product has been added.');
       state.MyCart = [...state.MyCart, action.payload];
+      toast.success('Product has been added.');
     },
     RemoveItem:(state,action)=>{
       const selectedItemId = action.payload.id;
@@ -18,5 +18,4 @@ export const CartItemsSlice = createSlice({
   },
 });
 export const { AddItem, RemoveItem } = CartItemsSlice.actions
-
 export default CartItemsSlice.reducer
