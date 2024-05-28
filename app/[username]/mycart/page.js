@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
-import { RemoveItem } from '../redux/Cart/CartItems';
+import { RemoveItem } from '@/app/redux/Cart/CartItems';
 import { toast } from 'react-toastify';
 const Mycart = () => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const Mycart = () => {
   let total_bill =0;
   return (<>
     {cartitems.length === 0 && (
-      <div className='text-black min-h-[30vh] flex flex-col items-center justify-center'>
+      <div className='text-black min-h-screen flex flex-col items-center justify-center'>
         <div>
           Nothing in Cart, Explore
           <Link href={"/products"} className='hover:underline underline-offset-4 bg-[--navbar-color] text-white px-2 py-1 rounded-md mx-2'>Products</Link>
@@ -44,6 +44,7 @@ const Mycart = () => {
           </div></>
         )}
       </div>
+      {cartitems.length > 0 &&
       <div className='right-side-cart w-full my-5 text-black'>
         <div className="mb-3 mt-1 font-bold text-xl md:text-2xl text-center">Your Summary</div>
         <div className="total-summary rounded-md p-4 overflow-hidden text-lg w-11/12 md:w-4/6 h-[50vh] bg-[--cart-theme] mx-auto flex flex-col item-end">
@@ -67,7 +68,7 @@ const Mycart = () => {
             <button className='px-2 py-1 text-sm rounded-sm hover:bg-blue-700 bg-blue-500 text-white transition-all'>Checkout</button>
           </div>
         </div>
-      </div>
+      </div>}
     </div>
 
   </>

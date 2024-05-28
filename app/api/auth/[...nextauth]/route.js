@@ -18,7 +18,7 @@ const handler =  NextAuth({
         async signIn({ user, account, profile, email, credentials }) {
           if (account.provider == 'github') {
             await connectDB();
-            const currentUser =await User.findOne({email:email});
+            const currentUser =await User.findOneAndUpdate({email:email});
             if (!currentUser){
               const NewUser = await User.create({
                 email:user.email,

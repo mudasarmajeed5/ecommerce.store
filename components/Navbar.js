@@ -15,6 +15,10 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 const Navbar = () => {
   const {data:session} = useSession();
+  let username;
+  if (session){
+    username = session.user.email.split('@')[0];
+  }
   const pathname = usePathname();
   const cartitems = useSelector((state) => state.CartItem.MyCart);
   const Cart_items_length = cartitems.length;
@@ -30,9 +34,9 @@ const Navbar = () => {
       text: "Categories"
     },
     {
-      link: "/mycart",
+      link: session ? username+'/mycart' : 'profile',
       icon: <IoIosCart />,
-      text: "Cart"
+      text: session? 'Cart':'Login',
     },
     {
       link: "/products",
@@ -50,15 +54,14 @@ const Navbar = () => {
       text: "Categories",
     },
     {
-      link: "/mycart",
-      text: "My Cart",
+      link: session ? username+'/mycart' : 'profile',
+      text: session? 'Cart':'Login',
     },
     {
       link: "/products",
       text: "Products",
     },
   ];
-
   return (
     <>
     <ToastContainer autoClose={1000} theme='dark' />
