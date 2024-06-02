@@ -1,10 +1,14 @@
 "use client"
-import React, { useState } from 'react'
-import Data from "./Products.json"
+import React, { useState } from 'react';
+import Data from "./Products.json";
 import {v4} from 'uuid';
-import { useDispatch } from 'react-redux'
-import { AddItem } from '../redux/Cart/CartItems'
-const Products = () => {
+import { useDispatch } from 'react-redux';
+import { AddItem } from '../redux/Cart/CartItems';
+import { useSession } from 'next-auth/react';
+const Products = async() => {
+  // Fetching user
+  const {data:session}=useSession()
+  
   const dispatch = useDispatch();
   const [search, setsearch] = useState("");
   const [FilterSearch, setFilterSearch] = useState(Data);

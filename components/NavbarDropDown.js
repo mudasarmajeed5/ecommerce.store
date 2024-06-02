@@ -3,11 +3,11 @@ import { useState }from 'react'
 import { signOut, useSession } from 'next-auth/react'
 const NavbarDropDown = () => {
   const { data: session } = useSession();
+  const username = session.user.name;
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
-
   return (
     <>
       <div>
@@ -24,18 +24,16 @@ const NavbarDropDown = () => {
           >
             <li>
               <a
-                href="/profile"
+                href={`${username}/updateprofile`}
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
-                Profile
+                My Profile
               </a>
             </li>
             <li>
               <a
-                href="#"
-                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Settings
+                href='/home' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                Homepage
               </a>
             </li>
             <li>
