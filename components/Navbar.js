@@ -43,7 +43,7 @@ const Navbar = () => {
       text: "Products"
     },
     {
-      link: session ? username+'/mycart' : '/login',
+      link: session ? `/${username}/mycart` : '/login',
       icon: <IoIosCart />,
       text: session? 'Cart':'Login',
     },
@@ -62,7 +62,7 @@ const Navbar = () => {
       text: "Products",
     },
     {
-      link: session ? username+'/mycart' : '/login',
+      link: session ? `/${username}/mycart` : '/login',
       text: session? 'Cart':'Login',
     },
   ];
