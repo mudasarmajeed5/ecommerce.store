@@ -5,7 +5,7 @@ import {v4} from 'uuid';
 import { useDispatch } from 'react-redux';
 import { AddItem } from '../redux/Cart/CartItems';
 import { useSession } from 'next-auth/react';
-const Products = async() => {
+const Products = () => {
   // Fetching user
   const {data:session}=useSession()
   
