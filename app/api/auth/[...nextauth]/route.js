@@ -15,18 +15,40 @@ const handler = NextAuth({
         })
     ],
     callbacks: {
+        async session({ session, user, token }) {
+            try {
+                await connectDB();
+                const dbUser = await User.findOne({ email: session.user.email });
+                if (dbUser) {
+                    console.log("Database User: ", dbUser);
+                    session.user = {
+                        id: dbUser._id,
+                        name: dbUser.name,
+                        email: dbUser.email,
+                        username: dbUser.username,
+                        image:session.user.image,
+                    };
+                } else {
+                    console.log('User not found in session callback');
+                }
+                return session;
+            } catch (error) {
+                console.error('Error in session callback:', error);
+                return session;
+            }
+        },
         async signIn({ user, account, profile, email, credentials }) {
             if (account.provider == 'github') {
                 try {
                     await connectDB();
                     const currentUser = await User.findOne({ email: user.email });
-                    console.log('User found in database, not creating one again \n------------\n', currentUser);
+                    console.log('User found in database', currentUser);
                     if (!currentUser) {
                         const newUser = await User.create({
+                            name:user.name,
                             email: user.email,
                             username: user.email.split('@')[0],
                         });
-                        console.log('User Created with Details:', newUser);
                     }
                     return true;
                 } catch (error) {
@@ -34,18 +56,9 @@ const handler = NextAuth({
                     return false;
                 }
             }
+            return true;
         },
-        async session({ session, user, token }) {
-            try {
-                const dbUser = await User.findOne({ email: session.user.email });
-                console.log("Database User: ", dbUser);
-                session.user.name = dbUser.username;
-                return session;
-            } catch (error) {
-                console.error('Error in session callback:', error);
-                return session;
-            }
-        }
+        
     }
 
 });

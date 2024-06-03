@@ -3,7 +3,7 @@ import { useState }from 'react'
 import { signOut, useSession } from 'next-auth/react'
 const NavbarDropDown = () => {
   const { data: session } = useSession();
-  const username = session.user.name;
+  const username = session.user.email.split('@')[0];
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);

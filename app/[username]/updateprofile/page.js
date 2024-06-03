@@ -1,67 +1,115 @@
 'use client'
 import { useSession } from "next-auth/react"
-import { useState } from "react";
+import { useState,useEffect } from "react";
 const UpdateProfile = () => {
-  const {data:session} = useSession();
-  const user={address:"House No. ___ Street No.__, City __, State ______",phone:"0312-3456789"}
-  const [address, setAddress] = useState(user.address);
-  const [phone, setPhone] = useState(user.phone);
-  console.log(session);
-  const handleAddressChange = (e) => {
-    setAddress(e.target.value);
+  const { data: session,status } = useSession();
+  const [form, setform] = useState({
+    email: '',
+    address: {
+      house: '',
+      street: '',
+      city: '',
+      state: '',
+      phone: ''
+    }
+  });
+  
+
+  useEffect(() => {
+    if (status === 'authenticated' && session) {
+      setform(prevform => ({
+        ...prevform,
+        email: session.user.email ?? ''
+      }));
+    }
+  }, [status, session]);
+
+  const handleForm = (e) => {
+    const { name, value } = e.target;
+    setform(prevForm => ({
+      ...prevForm,
+      address: {
+        ...prevForm.address,
+        [name]: value
+      }
+    }));
+  };
+  
+  
+  
+  
+  
+  const handle_form_submit = async (event) => {
+    event.preventDefault();
+    const response = await fetch('/api/updateuser', {
+      method: 'POST', headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(form),
+    })
+    if (!response.ok) {
+      console.error('Error:', response.statusText);
+      return;
+    }
+    const data = await response.json();
+
+    if (data.success) {
+      console.log('User updated successfully:', data);
+    } else {
+      console.log('User update failed:', data.error);
+    }
   };
 
-  const handlePhoneChange = (e) => {
-    setPhone(e.target.value);
-  };
+
   if (!session) {
     return <div className="flex justify-center items-center min-h-[70vh]"> <span className="p-5 border-2 border-t-white border-black rounded-full animate-spin"></span></div>;
   }
   return (
-    <div className="md:max-w-md bg-[--body-color] p-4 rounded-md shadow-xl w-4/5 mx-auto mt-2">
-    <div className="flex justify-center items-center flex-col">
-      <img src={session.user.image} alt="Profile" className="w-32 h-32 rounded-full" />
-    </div>
-    <div className="mb-1 mt-2">
-      <label className="block text-[--text-color] font-mono text-sm font-bold mb-2">Name</label>
-      <p>{session.user.name}</p>
-    </div>
-    <div className="mb-1">
-      <label className="block text-[--text-color] font-mono text-sm font-bold mb-2">Username</label>
-      <p>{session.user.email.split('@')[0]}</p>
-    </div>
-    
-    <div className="mb-1">
-      <label className="block text-[--text-color] font-mono text-sm font-bold mb-2">Email Address</label>
-      <p>{session.user.email}</p>
-    </div>
-    <form>
-      <div className="mb-1">
-        <label className="block text-[--text-color] font-mono text-sm font-bold mb-2">Address</label>
-        <textarea cols={10}
-          type="text"
-          placeholder={address}
-          onChange={handleAddressChange}
-          className="w-full px-3 py-2 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-        />
+    <div className="md:max-w-lg bg-[--body-color] p-4 rounded-md shadow-xl w-11/12 mx-auto mt-2">
+      <div className="flex justify-center items-center flex-col">
+        <img src={session.user.image} alt="Profile" className="w-32 h-32 rounded-full" />
+      </div>
+      <div className="mb-1 mt-2">
+        <label className="block text-[--text-color] text-md font-mono font-bold mb-2">Name</label>
+        <p className="text-sm">{session.user.name}</p>
       </div>
       <div className="mb-1">
-        <label className="block text-[--text-color] font-mono text-sm font-bold mb-2">Phone Number</label>
-        <input
-          type="text"
-          placeholder={phone}
-          onChange={handlePhoneChange}
-          className="w-full px-3 py-2 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-        />
+        <label className="block text-[--text-color] text-md font-mono font-bold mb-2">Username</label>
+        <p className="text-sm">{session.user.email.split('@')[0]}</p>
       </div>
-      <button
-        type="submit"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      >
-        Update Profile
-      </button>
-    </form>
-  </div>
+
+      <div className="mb-1">
+        <label className="block text-[--text-color] text-md font-mono font-bold mb-2">Email Address</label>
+        <p className="text-sm">{session.user.email}</p>
+      </div>
+      <form onSubmit={handle_form_submit}>
+        <div className="mb-1">
+          <label className="block text-[--text-color] text-md font-mono font-bold mb-2">Address</label>
+          <div className="grid-cols-2 grid-rows-2">
+            <input onChange={handleForm} name="house" className="bg-transparent focus:outline-none focus:border-blue-500 m-1 border text-sm px-2 rounded-sm py-1" value={form.address.house} placeholder={'House No.'} type="text" />
+            <input onChange={handleForm} name="street" className="bg-transparent focus:outline-none focus:border-blue-500 m-1 border text-sm px-2 rounded-sm py-1" value={form.address.street} placeholder={'Street'} type="text" />
+            <input onChange={handleForm} name="city" className="bg-transparent focus:outline-none focus:border-blue-500 m-1 border text-sm px-2 rounded-sm py-1" value={form.address.city} placeholder={'City'} type="text" />
+            <input onChange={handleForm} name="state" className="bg-transparent focus:outline-none focus:border-blue-500 m-1 border text-sm px-2 rounded-sm py-1" value={form.address.state} placeholder={'State'} type="text" />
+          </div>
+        </div>
+        <div className="mb-1">
+          <label className="block text-[--text-color] text-sm font-mono font-bold mb-2">Phone Number</label>
+          <input
+            type="text"
+            value={form.address.phone}
+            onChange={handleForm}
+            name="phone"
+            className="w-full px-2 py-1 text-sm border bg-transparent border-gray-300 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <button
+          type="submit"
+          className="bg-blue-500 transition-all hover:bg-blue-700 text-white mt-3 py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+        >
+          Update Profile
+        </button>
+      </form>
+    </div>
   )
 }
 
