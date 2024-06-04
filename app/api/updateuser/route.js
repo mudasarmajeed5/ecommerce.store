@@ -9,7 +9,7 @@ export async function POST(req) {
       const user = await User.findOneAndUpdate(
         { email },
         { address },
-        { new: true }
+        { new: true } 
       );
       if (!user) {
         return NextResponse.json({ success: false, message: 'User not found' }, { status: 404 });

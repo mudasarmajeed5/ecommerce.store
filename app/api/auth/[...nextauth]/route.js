@@ -15,34 +15,11 @@ const handler = NextAuth({
         })
     ],
     callbacks: {
-        async session({ session, user, token }) {
-            try {
-                await connectDB();
-                const dbUser = await User.findOne({ email: session.user.email });
-                if (dbUser) {
-                    console.log("Database User: ", dbUser);
-                    session.user = {
-                        id: dbUser._id,
-                        name: dbUser.name,
-                        email: dbUser.email,
-                        username: dbUser.username,
-                        image:session.user.image,
-                    };
-                } else {
-                    console.log('User not found in session callback');
-                }
-                return session;
-            } catch (error) {
-                console.error('Error in session callback:', error);
-                return session;
-            }
-        },
         async signIn({ user, account, profile, email, credentials }) {
             if (account.provider == 'github') {
                 try {
                     await connectDB();
                     const currentUser = await User.findOne({ email: user.email });
-                    console.log('User found in database', currentUser);
                     if (!currentUser) {
                         const newUser = await User.create({
                             name:user.name,

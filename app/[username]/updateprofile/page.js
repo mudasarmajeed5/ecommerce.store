@@ -1,8 +1,9 @@
 'use client'
 import { useSession } from "next-auth/react"
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 const UpdateProfile = () => {
-  const { data: session,status } = useSession();
+  const { data: session, status } = useSession()
   const [form, setform] = useState({
     email: '',
     address: {
@@ -13,8 +14,6 @@ const UpdateProfile = () => {
       phone: ''
     }
   });
-  
-
   useEffect(() => {
     if (status === 'authenticated' && session) {
       setform(prevform => ({
@@ -34,12 +33,10 @@ const UpdateProfile = () => {
       }
     }));
   };
-  
-  
-  
-  
-  
   const handle_form_submit = async (event) => {
+    let loader = document.getElementById('loader');
+    loader.classList.remove('hidden');
+    loader.classList.add('flex');
     event.preventDefault();
     const response = await fetch('/api/updateuser', {
       method: 'POST', headers: {
@@ -54,9 +51,13 @@ const UpdateProfile = () => {
     const data = await response.json();
 
     if (data.success) {
+      loader.classList.add('hidden');
+      loader.classList.remove('flex');
       console.log('User updated successfully:', data);
+      toast.success('Profile updated')
     } else {
       console.log('User update failed:', data.error);
+      toast.error('Try again later.')
     }
   };
 
@@ -67,9 +68,9 @@ const UpdateProfile = () => {
   return (
     <div className="md:max-w-lg bg-[--body-color] p-4 rounded-md shadow-xl w-11/12 mx-auto mt-2">
       <div className="flex justify-center items-center flex-col">
-        <img src={session.user.image} alt="Profile" className="w-32 h-32 rounded-full" />
+        <img src={session.user.image} alt="Profile" className="w-32 h-32 rounded-full border-2" />
       </div>
-      <div className="mb-1 mt-2">
+      <div className="mb-1">
         <label className="block text-[--text-color] text-md font-mono font-bold mb-2">Name</label>
         <p className="text-sm">{session.user.name}</p>
       </div>
@@ -99,15 +100,18 @@ const UpdateProfile = () => {
             value={form.address.phone}
             onChange={handleForm}
             name="phone"
-            className="w-full px-2 py-1 text-sm border bg-transparent border-gray-300 focus:outline-none focus:border-blue-500"
-          />
+            className="w-full px-2 py-1 text-sm border bg-transparent border-gray-300 focus:outline-none focus:border-blue-500"/>
         </div>
-        <button
-          type="submit"
-          className="bg-blue-500 transition-all hover:bg-blue-700 text-white mt-3 py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-        >
-          Update Profile
-        </button>
+        <div className="flex justify-start items-center gap-2">
+          <button
+            type="submit"
+            className="bg-blue-500 transition-all hover:bg-blue-700 text-white mt-3 py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+          >
+            Update Profile
+          </button>
+          <div id="loader" className="hidden justify-center items-center"><span className="p-3 mt-3 border-2 rounded-full border-t-black animate-spin"></span></div>
+        </div>
+
       </form>
     </div>
   )
