@@ -3,38 +3,63 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RemoveItem } from '@/app/redux/Cart/CartItems';
+import { RemoveItem,SetCartItems } from '@/app/redux/Cart/CartItems';
 import { toast } from 'react-toastify';
 const Mycart = () => {
   const {data:session} = useSession()
   const dispatch = useDispatch();
   const cartitems = useSelector((state) => state.CartItem.MyCart);
   useEffect(() => {
-    async function updateDatabase(email){
-      // console.log('sending email: ',email,'and cart items: \n',cartitems)
+    const fetchUserCart = async() => {
+      if (!session){
+        console.log('Session not found')
+        return;
+      }
       try {
-        const response = await fetch('/api/cartupdate',{
-          method:'POST',headers:{
-            'Content-Type':'application/json',
-            'email':email,
+        const res = await fetch('/api/cartupdate', {
+          method:'GET',
+          headers: {
+            'email': session.user.email
+          }
+        });
+        const data = await res.json();
+        const fetchedCart = data.found_user.cartitems;
+        dispatch(SetCartItems(fetchedCart));
+        
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    }
+    if (session){
+      fetchUserCart();
+    }
+    
+  }, [session, dispatch])
+  
+  useEffect(() => {
+    if (!session || cartitems.length === 0) {
+      return;
+    }
+    const updateDatabase = async (email) => {
+      try {
+        const response = await fetch('/api/cartupdate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'email': email,
           },
-          body:JSON.stringify({cartitems}),
-        })
+          body: JSON.stringify({ cartitems }),
+        });
         if (!response.ok) {
           console.log('Error:', response.statusText);
           return;
         }
-        else {
-          console.log('Success:', await response.json());
-        }
       } catch (error) {
         console.error('Error during fetch:', error);
       }
-      
-    }
-    if (session){
-      updateDatabase(session.user.email);
-    }
+    };
+    updateDatabase(session.user.email)
+
   }, [cartitems,session])
 
   const removeitem = (message) => {
