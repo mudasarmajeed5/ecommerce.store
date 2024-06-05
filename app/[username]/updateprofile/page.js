@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react"
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 const UpdateProfile = () => {
-  const { data: session, status } = useSession()
+  const { data: session, status } = useSession();
   const [form, setform] = useState({
     email: '',
     address: {
@@ -15,12 +15,47 @@ const UpdateProfile = () => {
     }
   });
   useEffect(() => {
+    const fetchUserData = async() => {
+      if (!session){
+        console.log('Session not found')
+        return
+      }
+      try {
+        const res = await fetch('/api/fetchuser', {
+          headers: {
+            'email': session.user.email
+          }
+        });
+        const data = await res.json();
+        if (data.success) {
+          const userAddress = data.found_user.address;
+          setform({
+            email: session.user.email,
+            address: {
+              house: userAddress.house || '',
+              street: userAddress.street || '',
+              city: userAddress.city || '',
+              state: userAddress.state || '',
+              phone: userAddress.phone || ''
+            }
+          });
+        } else {
+          console.error('Error fetching user data:', data.message);
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    }
+    
+    
     if (status === 'authenticated' && session) {
+      console.log(session);
       setform(prevform => ({
         ...prevform,
         email: session.user.email ?? ''
       }));
     }
+    fetchUserData();
   }, [status, session]);
 
   const handleForm = (e) => {
