@@ -29,6 +29,7 @@ const UpdateProfile = () => {
         const data = await res.json();
         if (data.success) {
           const userAddress = data.found_user.address;
+          console.log(userAddress)
           setform({
             email: session.user.email,
             address: {
@@ -49,7 +50,6 @@ const UpdateProfile = () => {
     
     
     if (status === 'authenticated' && session) {
-      console.log(session);
       setform(prevform => ({
         ...prevform,
         email: session.user.email ?? ''

@@ -21,15 +21,3 @@ export async function POST(req) {
     }
   }
   
-  // Handle other methods (if necessary, here we just disallow them)
-  export async function GET() {
-    return NextResponse.json({ success: false, error: 'Method not allowed' }, { status: 405 });
-  }
-  
-  export async function PUT() {
-    return NextResponse.json({ success: false, error: 'Method not allowed' }, { status: 405 });
-  }
-  
-  export async function DELETE() {
-    return NextResponse.json({ success: false, error: 'Method not allowed' }, { status: 405 });
-  }
