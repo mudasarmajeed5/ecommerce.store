@@ -66,9 +66,35 @@ const Mycart = () => {
     toast.success(`${message}`)
   };
   const handleRemoveItem = (item) => {
+    const isLastItem = cartitems.length === 1;
+
     dispatch(RemoveItem(item));
     removeitem(`${item.title} has been removed`);
+
+    if (isLastItem && session) {
+      const updateDatabase = async (email) => {
+        try {
+          const response = await fetch('/api/cartupdate', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'email': email,
+            },
+            body: JSON.stringify({ cartitems: [] }),
+          });
+          if (!response.ok) {
+            console.log('Error:', response.statusText);
+            return;
+          }
+        } catch (error) {
+          console.error('Error during fetch:', error);
+        }
+      };
+      updateDatabase(session.user.email);
+    }
   };
+
+
   let total_bill = 0;
   return (<>
     {cartitems.length === 0 && (

@@ -15,8 +15,8 @@ const UpdateProfile = () => {
     }
   });
   useEffect(() => {
-    const fetchUserData = async() => {
-      if (!session){
+    const fetchUserData = async () => {
+      if (!session) {
         console.log('Session not found')
         return
       }
@@ -47,8 +47,8 @@ const UpdateProfile = () => {
         console.error('Error fetching user data:', error);
       }
     }
-    
-    
+
+
     if (status === 'authenticated' && session) {
       setform(prevform => ({
         ...prevform,
@@ -135,7 +135,7 @@ const UpdateProfile = () => {
             value={form.address.phone}
             onChange={handleForm}
             name="phone"
-            className="w-full px-2 py-1 text-sm border bg-transparent border-gray-300 focus:outline-none focus:border-blue-500"/>
+            className="w-full px-2 py-1 text-sm border bg-transparent border-gray-300 focus:outline-none focus:border-blue-500" />
         </div>
         <div className="flex justify-start items-center gap-2">
           <button
