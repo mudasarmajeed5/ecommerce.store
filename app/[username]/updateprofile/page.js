@@ -135,7 +135,7 @@ const UpdateProfile = () => {
             value={form.address.phone}
             onChange={handleForm}
             name="phone"
-            className="w-full px-2 py-1 text-sm border bg-transparent border-gray-300 focus:outline-none focus:border-blue-500" />
+            className="w-[91%] ml-1 px-2 py-1 text-sm border bg-transparent border-gray-300 focus:outline-none focus:border-blue-500" />
         </div>
         <div className="flex justify-start items-center gap-2">
           <button

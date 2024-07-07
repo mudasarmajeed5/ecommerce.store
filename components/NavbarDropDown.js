@@ -1,8 +1,10 @@
 'use client'
 import { useState }from 'react'
 import { signOut, useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 const NavbarDropDown = () => {
   const { data: session } = useSession();
+  const router = useRouter();
   const username = session.user.email.split('@')[0];
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const toggleDropdown = () => {
@@ -46,7 +48,7 @@ const NavbarDropDown = () => {
             </li>
             <li>
               <span
-                onClick={() => signOut()}
+                onClick={() => {signOut();router.push('/login')}}
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 Sign out
