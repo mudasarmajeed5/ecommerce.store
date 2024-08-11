@@ -11,11 +11,14 @@ const handler = NextAuth({
         }),
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            httpOptions:{
+                timeout:10000,
+            }
         })
     ],
     callbacks: {
-        async signIn({ user, account, profile, email, credentials }) {
+        async signIn({ user, account}) {
             if (account.provider == 'github' || account.provider == 'google') {
                 try {
                     await connectDB();

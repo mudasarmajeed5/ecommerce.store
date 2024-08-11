@@ -1,23 +1,24 @@
 "use client";
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RemoveItem,SetCartItems } from '@/app/redux/Cart/CartItems';
+import { RemoveItem, SetCartItems } from '@/app/redux/Cart/CartItems';
 import { toast } from 'react-toastify';
 const Mycart = () => {
-  const {data:session} = useSession()
+  const { data: session } = useSession()
   const dispatch = useDispatch();
   const cartitems = useSelector((state) => state.CartItem.MyCart);
+  const [Loader, setLoader] = useState(true);
   useEffect(() => {
-    const fetchUserCart = async() => {
-      if (!session){
+    const fetchUserCart = async () => {
+      if (!session) {
         console.log('Session not found')
         return;
       }
       try {
         const res = await fetch('/api/cartupdate', {
-          method:'GET',
+          method: 'GET',
           headers: {
             'email': session.user.email
           }
@@ -25,17 +26,18 @@ const Mycart = () => {
         const data = await res.json();
         const fetchedCart = data.found_user.cartitems;
         dispatch(SetCartItems(fetchedCart));
-        
+
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
     }
-    if (session){
+    if (session) {
       fetchUserCart();
+      setLoader(false);
     }
-    
+
   }, [session, dispatch])
-  
+
   useEffect(() => {
     if (!session || cartitems.length === 0) {
       return;
@@ -60,7 +62,7 @@ const Mycart = () => {
     };
     updateDatabase(session.user.email)
 
-  }, [cartitems,session])
+  }, [cartitems, session])
 
   const removeitem = (message) => {
     toast.success(`${message}`)
@@ -97,6 +99,7 @@ const Mycart = () => {
 
   let total_bill = 0;
   return (<>
+    {Loader && <div className='flex justify-center items-center w-screen bg-[#F7B2AD] fixed top-0 left-0 z-[10] h-screen'><span className="p-4 rounded-full border-t-red-700 border-2 border-white animate-spin"></span></div>}
     {cartitems.length === 0 && (
       <div className='text-black min-h-screen flex flex-col items-center justify-center'>
         <div>
