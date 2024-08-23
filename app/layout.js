@@ -1,6 +1,4 @@
 import { Inter } from "next/font/google";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import "./globals.css";
 import SessionWrapper from "./component/SessionWrapper";
 import ReduxProvider from "./redux/ReduxProvider";
@@ -13,15 +11,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ReduxProvider>
-
       <html lang="en">
-        <SessionWrapper>
-          <body className={inter.className}>
-            <Navbar />
+        <body className={inter.className}>
+          <SessionWrapper>
             {children}
-            <Footer />
-          </body>
-        </SessionWrapper>
+          </SessionWrapper>
+        </body>
       </html>
     </ReduxProvider>
   );

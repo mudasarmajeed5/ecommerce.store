@@ -1,9 +1,18 @@
 "use client"
 import { SessionProvider } from "next-auth/react"
-import React from 'react'
-const SessionWrapper = ({children}) => {
+import { usePathname } from "next/navigation"
+import Navbar from "@/components/Navbar"
+import Footer from "@/components/Footer"
+
+const SessionWrapper = ({ children }) => {
+  const path = usePathname();
+  const isAdminPath = path.startsWith('/admin');
   return (
-    <SessionProvider>{children}</SessionProvider>
+    <SessionProvider>
+      {!isAdminPath && <Navbar />}
+      <main>{children}</main>
+      {!isAdminPath && <Footer />}
+    </SessionProvider>
   )
 }
 

@@ -14,7 +14,7 @@ const NavbarDropDown = () => {
     <>
       <div>
         <span id="dropdownDefaultButton" data-dropdown-toggle="dropdown" type="button" onClick={toggleDropdown}>
-            <img className='rounded-full top-1 relative' src={session.user.image} width={34} alt="" />
+            <img className='rounded-full top-1 relative' src={session.user.image} width={30} alt="" />
         </span>
         <div
           id="dropdown"
