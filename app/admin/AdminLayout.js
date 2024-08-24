@@ -1,7 +1,7 @@
 "use client"
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-const Layout = ({ children }) => {
+const   Layout = ({ children }) => {
   const path = usePathname();
   const isActive = (href) => {
     return href===path;
@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
         <Link href={"/"}>Home</Link>
       </nav>
       <main className="text-black">{children}</main>
-      <footer className='bg-red-950 absolute w-full py-2 bottom-0 text-white text-center'>mudassarmajeed5 || 2024 @All rights reserved</footer>
+      <footer className='bg-red-950 py-2 text-white text-center'>mudassarmajeed5 || 2024 @All rights reserved</footer>
     </div>
   )
 }

@@ -77,13 +77,12 @@ const Navbar = () => {
         <ul className='flex gap-3 2xl:gap-5 items-center justify-center'>
           {PCNavLinks.map((item, index) => {
             const isActive = pathname.startsWith(item.link);
-            const isCartItem = index === 3;
-            const isDisabled = isCartItem && pathname === `/${username}/mycart`;  
+            const isCartItem = index === 3;  
             return (
               <li key={index} className='list-none text-sm relative'>
                 <Link 
-              href={isDisabled ? "#" : item.link} 
-              className={`${isActive ? "text-[#97EFE9] underline underline-offset-8" : ""} ${isDisabled ? "pointer-events-none opacity-80" : ""}`}
+              href={item.link} 
+              className={`${isActive ? "text-[#97EFE9] underline underline-offset-8" : ""}`}
             >
               {item.text}
             </Link>

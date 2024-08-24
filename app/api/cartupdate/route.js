@@ -6,8 +6,6 @@ export async function POST(request) {
     try {
         const email = request.headers.get('email');
         const { cartitems } = await request.json();
-        // console.log('Received email:', email);
-        // console.log('Received cart items:', cartitems);
         if (!email || !cartitems) {
             return NextResponse.json({ success: false, message: 'Email and cartitems are required' }, { status: 400 });
         }
