@@ -5,7 +5,6 @@ import Product1 from "./Images/CardImages/Product1.jpg"
 import Product2 from "./Images/CardImages/Product2.jpg"
 import Product3 from "./Images/CardImages/Product3.jpg"
 import { AddItem } from '@/app/redux/Cart/CartItems';
-import { ToastContainer } from 'react-toastify';
 import { useDispatch } from 'react-redux'
 const NewArrivals = () => {
     const dispatch = useDispatch();
@@ -41,12 +40,11 @@ const NewArrivals = () => {
             <div className="new-arrivals text-center mt-4 p-2 text-lg md:text-xl xl:text-2xl 2xl:text-4xl font-[Poppins] text-[--navbar-color]">Hot Deals</div>
             <div className="cards md:flex-row flex flex-wrap items-center justify-around w-full">
                 {CardsData.map((item, index) => {
-                    let unique_id = v4();
                     return (
-                        <div key={unique_id} className='card w-[200px] shadow hover:shadow-2xl hover:shadow-red-800 duration-300 transition-all md:w-[250px] flex flex-col justify-between relative rounded-lg px-2 pb-2 text-[--body-color]'>
+                        <div key={index} className='card w-[170px] md:w-[220px] flex flex-col justify-between relative border border-white hover:shadow-red-700 hover:shadow-xl transition-all duration-300 p-1 text-[--body-color]'>
                             <div className="image relative py-2">
                              
-                                <img className='w-[220px] hover:scale-110 transition-all duration-300 m-1 mx-auto h-[200px] object-cover text-center rounded-md' src={item.image} alt="" />
+                                <img className='w-[160px] md:w-[200px] m-1 mx-auto duration-300 h-[160px] hover:scale-105 scale-100 transition-all object-cover text-center rounded-md' src={item.image} alt="" />
                             </div>
                             <div className="item-desc flex justify-between flex-col pl-2">
                                 <div className='text-lg font-[Poppins]'>{item.title}</div>

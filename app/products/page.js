@@ -33,7 +33,9 @@ const Products = () => {
   };
 
   if (loading) {
-    return <div className='text-2xl w-full h-[40vh] flex justify-center items-center text-[--body-color] text-center animate-pulse text-bold mt-5'>Loading...</div>;
+    return <div className='text-2xl w-full h-[80vh] flex justify-center items-center text-[--body-color] text-bold mt-5'>
+        <span className="p-4 border-2 border-t-black border-white animate-spin rounded-full"></span>
+    </div>;
   }
   return (
     <>
@@ -49,7 +51,7 @@ const Products = () => {
 
       <div className='Products border-red-600 w-full flex md:flex-row flex-col gap-5'>
         <div className="md:w-1/5 bg-[--cart-theme] p-2 text-center">Filters and other Tags added here</div>
-        <div className="cards md:flex-row flex flex-wrap items-center justify-around md:w-4/5">
+        <div className="md:w-4/5 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
           {FilterSearch.map((item, index) => {
             return (<ProductCard key={index} item={item} AddCurrentItem={AddCurrentItem} />)
           })}

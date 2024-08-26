@@ -87,7 +87,7 @@ const Navbar = () => {
               {item.text}
             </Link>
                 {isCartItem && session && (
-                  <span className='absolute top-[-5px] font-bold text-lime-300 xl:right-[-14px] 2xl:right-[-18px] p-1 rounded-full text-sm '>{Cart_items_length}</span>
+                  <span className='absolute top-[-5px] text-lime-300 xl:right-[-14px] 2xl:right-[-18px] p-1 rounded-full text-sm '>{Cart_items_length}</span>
                 )}
               </li>
             );
@@ -112,7 +112,7 @@ const Navbar = () => {
                   <span className="text-sm">{item.text}</span>
                 </Link>
                 {isCartItem && (
-                  <span className='absolute top-[-5px] font-bold text-lime-300 right-[-18px] p-1 rounded-full text-sm '>{Cart_items_length}</span>
+                  <span className='absolute top-[-5px] text-lime-300 right-[-18px] p-1 rounded-full text-sm '>{Cart_items_length}</span>
                 )}
               </li>
             );
