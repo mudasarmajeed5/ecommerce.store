@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { AddItem } from '../redux/Cart/CartItems';
-import ProductCard from "./components/ProductCard";
+import Product_PageCard from "./components/ProductsPageCard";
 
 const Products = () => {
   const [loading, setloading] = useState(true)
@@ -52,7 +52,7 @@ const Products = () => {
       <div className="md:w-1/5 bg-[--cart-theme] p-2 text-center">Filters and other Tags added here</div>
       <div className="md:w-4/5 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
         {FilterSearch.map((item, index) => {
-          return (<ProductCard key={index} item={item} AddCurrentItem={AddCurrentItem} />)
+          return (<Product_PageCard key={index} item={item} AddCurrentItem={AddCurrentItem} />)
         })}
       </div>
     </div>

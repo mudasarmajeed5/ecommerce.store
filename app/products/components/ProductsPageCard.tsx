@@ -14,7 +14,7 @@ interface ProductCardProps {
     item: ItemType;
     AddCurrentItem: AddCurrentItemType;
   }
-const ProductCard:React.FC<ProductCardProps> = ({item,AddCurrentItem}) => {
+const Product_PageCard:React.FC<ProductCardProps> = ({item,AddCurrentItem}) => {
   return (
     <>
     <div className='card w-[170px] md:w-[220px] flex flex-col justify-between relative border border-white hover:shadow-red-700 hover:shadow-xl transition-all duration-300 p-1 text-[--body-color]'>
@@ -39,4 +39,4 @@ const ProductCard:React.FC<ProductCardProps> = ({item,AddCurrentItem}) => {
   )
 }
 
-export default ProductCard
+export default Product_PageCard
