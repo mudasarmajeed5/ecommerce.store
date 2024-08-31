@@ -17,7 +17,7 @@ interface ProductCardProps {
 const Product_PageCard:React.FC<ProductCardProps> = ({item,AddCurrentItem}) => {
   return (
     <>
-    <div className='card w-[170px] md:w-[220px] flex flex-col justify-between relative border border-white hover:shadow-red-700 hover:shadow-xl transition-all duration-300 p-1 text-[--body-color]'>
+    <div className='card w-[170px] md:w-[220px] flex flex-col justify-between relative hover:shadow-red-700 hover:shadow-xl transition-all duration-300 p-1 text-[--body-color]'>
 
     <Link className="hover:cursor-pointer" href={`/products/${item._id}`}>
       <div className="image relative py-1">

@@ -5,15 +5,12 @@ import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import { AdminRoutes } from '@/app/component/AdminSession';
 import { useSession } from 'next-auth/react';
-interface FormState {
-  [key: string]: string;
-}
 type Form = {
   title: string,
   tag: string,
   price: number,
   image: string,
-  desc: string
+  desc: string,
 }
 const Products = () => {
   const { data :session } = useSession();
@@ -31,14 +28,13 @@ const Products = () => {
       [name]: name === 'price' ? Number(value) : value
     }));
   };
-  const addProduct = async (email: string) => {
+  const addProduct = async () => {
     if (session) {
       try {
         const response = await fetch('/api/products', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            email: email,
           },
           body: JSON.stringify({ form })
         })
@@ -61,8 +57,8 @@ const Products = () => {
     if (!session) {
       return
     }
-    if (session?.user?.email && loader) {
-      await addProduct(session.user.email)
+    if (loader) {
+      await addProduct()
       toast.success('Product has been added to Database');
       setform({
         title: '',

@@ -1,53 +1,81 @@
 'use client'
 import { v4 } from "uuid"
-import Product1 from "./Images/CardImages/Product1.jpg"
-import Product2 from "./Images/CardImages/Product2.jpg"
-import Product3 from "./Images/CardImages/Product3.jpg"
+import { useEffect,useState } from "react"
 import { AddItem } from "@/app/redux/Cart/CartItems"
 import { useDispatch } from "react-redux"
+import Link from "next/link"
+interface ItemType{
+    _id:string,
+    title:string,
+    price:number,
+    id:string,
+    image:string,
+    desc:string
+}
 const NewArrivals: React.FC = () => {
+
+    const [Products, setProducts] = useState<ItemType[]>([]);
+    const [Loading, setLoading] = useState(true)
     const dispatch = useDispatch();
     const AddCurrentItem = (item: any, id: string) => {
         const newItem = { ...item, id: id };
         dispatch(AddItem(newItem));
     }
-    const CardsData = [
-        {
-            "title": "Lipstick | Lipbalm",
-            "image": Product1.src,
-            "price": 5000
-        },
-        {
-            "title": "Eyeshadow Palette",
-            "image": Product2.src,
-            "price": 250
-        },
-        {
-            "title": "Whitening cream",
-            "image": Product3.src,
-            "price": 550
-        },
-        {
-            "title": "Whitening cream",
-            "image": Product3.src,
-            "price": 550
+    useEffect(() => {
+      const fetchProducts = async() => {
+        try {
+            let response = await fetch('/api/products',{
+                method:'GET',headers:
+                {
+                    'Content-Type':'application/json',
+
+                }
+            });
+            let fetchedData = await response.json();
+            const HotDeals = fetchedData.foundData;
+            console.log(HotDeals)
+            let Product_Array=[]
+            for (let i=0;i<=7;i++){
+                let product_number = HotDeals[i];
+                Product_Array.push(product_number);
+            }
+            if (HotDeals.length > 0) setProducts(Product_Array)
+            setLoading(false);  
+        } catch (error) {
+            const err = error as Error;
+            console.log('Error fetching Data',err)
         }
-    ];
+      }
+      fetchProducts();
+    
+      
+    }, [])
+    if (Loading) {
+        return <div className='text-2xl w-full h-[80vh] flex justify-center items-center text-[--body-color] text-bold mt-5'>
+            <span className="p-4 border-2 border-t-black border-white animate-spin rounded-full"></span>
+        </div>;
+      }
     return (
         <div>
-            <div className="new-arrivals text-center mt-4 p-2 text-lg md:text-xl xl:text-2xl 2xl:text-4xl font-[Poppins] text-[--navbar-color]">Hot Deals</div>
-            <div className="cards md:flex-row flex flex-wrap items-center justify-around w-full">
-                {CardsData.map((item, index) => {
+            {Products.length ===0 && <div className='text-[30px] w-full h-[40vh] flex justify-center items-center text-[--body-color] text-center animate-pulse text-bold mt-5'>No Results found</div>}
+            <div className="text-center mt-10 mb-5 text-2xl text-black">Hot deals</div>
+            <div className="md:w-4/5 mx-auto place-items-center border-black grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+                {Products.map((item:ItemType, index) => {
                     return (
-                        <div key={index} className='card w-[170px] md:w-[220px] flex flex-col justify-between relative border border-white hover:shadow-red-700 hover:shadow-xl transition-all duration-300 p-1 text-[--body-color]'>
+                        <div key={index} className='card w-[170px] md:w-[220px] flex flex-col justify-between relative hover:shadow-red-700 hover:shadow-xl transition-all duration-300 p-1 text-[--body-color]'>
                             <div className="image relative py-2">
-
-                                <img className='w-[160px] md:w-[200px] m-1 mx-auto duration-300 h-[160px] hover:scale-105 scale-100 transition-all object-cover text-center rounded-md' src={item.image} alt="" />
+                                <Link href={`/products/${item._id}`}>
+                                <img className='w-[160px] md:w-[200px] m-1 mx-auto duration-300 h-[160px] hover:scale-100 scale-95 transition-transform object-cover text-center rounded-md' src={item.image} alt="" />
+                                </Link>
                             </div>
                             <div className="item-desc flex justify-between flex-col pl-2">
-                                <div className='text-lg font-[Poppins]'>{item.title}</div>
+                                <div className='text-sm xl:text-lg font-[Poppins]'>{item.title}</div>
                                 <div className='font-bold text-black' >{item.price}</div>
-                                <div className="flex justify-between "><button onClick={() => AddCurrentItem(item, v4())} className="hover:bg-black mr-1 w-4/5 text-sm transition-all px-2 py-1 rounded-md text-white bg-gray-900 ">Add item</button><button className='hover:bg-black transition-all px-2 py-1 rounded-md text-sm text-white bg-gray-900'>Details</button></div>
+                                <div className="flex justify-between ">
+                                   
+                                    <button onClick={() => AddCurrentItem(item, v4())} className="hover:bg-black mr-1 w-4/5 text-sm transition-all px-2 py-1 rounded-md text-white bg-gray-900 ">Add item</button> <Link href={`/products/${item._id}`}><button className='hover:bg-black transition-all px-2 py-1 rounded-md text-sm text-white bg-gray-900'>Details</button>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     )
