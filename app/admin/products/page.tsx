@@ -11,6 +11,7 @@ type Form = {
   price: string,
   image: string,
   desc: string,
+  stock:string
 }
 const Products = () => {
   const { data :session } = useSession();
@@ -19,7 +20,8 @@ const Products = () => {
     tag: '',
     price: '',
     image: '',
-    desc: ''
+    desc: '',
+    stock:''
   });
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -65,7 +67,8 @@ const Products = () => {
         tag: '',
         price: '',
         image: '',
-        desc: ''
+        desc: '',
+        stock:''
       })
       loader.classList.add("hidden");
       loader.classList.remove("flex");
@@ -182,6 +185,7 @@ const Products = () => {
                           <option value="sports">Sports</option>
                         </select>
                       </div>
+                      <div><input onChange={(e) => handleChange(e)} className='w-full px-3 py-2 mt-1 border border-black rounded-md focus:outline-none focus:ring focus:ring-primary text-black bg-transparent' placeholder='Avail. Stock?' type="number" name='stock' required value={Form.stock} /></div>
 
                     </div>
                     <div className='flex justify-start items-center gap-2'>
@@ -209,7 +213,7 @@ const Products = () => {
                 {Form.desc ? Form.desc : "Add your product's description"}
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-lg font-semibold">Rs.{Form.price ? Form.price : "_____ "} /- Only</span>
+                <span className="text-lg font-semibold">Rs.{Form.price ? Form.price : "_____ "} /-</span>
               </div>
             </div>
           </div>

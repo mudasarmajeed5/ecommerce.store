@@ -160,7 +160,7 @@ const Mycart = () => {
                         <button onClick={() => increaseQuantity(index)} className="text-xl"><FiPlus /></button>
                       </div>
                       <div>
-                        <button className='bg-[--text-color] hover:bg-cyan-500 text-sm rounded-md text-black px-2 py-1 ' onClick={() => handleRemoveItem(item)}>Remove Item</button>
+                        <button className='bg-[--text-color] transition-colors duration-200 hover:bg-cyan-500 text-sm rounded-md text-black px-2 py-1 ' onClick={() => handleRemoveItem(item)}>Remove Item</button>
                       </div>
                     </div>
                   </div>

@@ -87,7 +87,7 @@ const Footer = () => {
             </nav>
           </div>
           <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-            <Link href={"/admin"} className="title-font font-medium text-white tracking-widest text-sm mb-3">
+            <Link href={"/admin"} className="title-font bg-white font-medium text-black px-2 py-1 rounded-md tracking-widest text-sm mb-3">
               Admin ? Login
             </Link>
             <div className="flex xl:flex-nowrap md:flex-nowrap lg:flex-wrap flex-wrap justify-center items-end md:justify-start">
