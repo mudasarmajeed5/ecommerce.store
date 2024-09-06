@@ -1,5 +1,6 @@
 import connectDB from "@/app/Database/mongodb";
 import Products from "@/app/models/Products"
+import { v4 } from "uuid";
 import { NextResponse } from "next/server";
 export async function POST(request:any){
     await connectDB();
@@ -11,10 +12,11 @@ export async function POST(request:any){
             return NextResponse.json({status:404,success:false,message:"Products Was not sent correctly"})
         }
         if(productData){
-            const Data= productData.form;
+            const Data= productData.Form;
             const PushProduct= new Products({
+                id:v4(),
                 title:Data.title,
-                price:Data.price,
+                price:Number(Data.price),
                 desc:Data.desc,
                 image:Data.image,
                 tag:Data.tag    

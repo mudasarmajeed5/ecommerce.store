@@ -31,15 +31,15 @@ const NavbarDropDown: React.FC = () => {
                     onClick={toggleDropdown}
                 >
                     <img
-                        className='rounded-full top-1 relative'
-                        src={session?.user?.image || ''}
+                        className='rounded-full top-1 relative overflow-hidden'
+                        src={session?.user?.image || 'https://www.transparentpng.com/download/user/gray-user-profile-icon-png-fP8Q1P.png'}
                         width={30}
                         alt="User Image"
                     />
                 </button>
                 <div
                     id="dropdown"
-                    className={`z-10 ${dropdownVisible ? '' : 'hidden'} absolute right-4 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
+                    className={`z-10 ${dropdownVisible ? '' : 'hidden'} absolute right-4 divide-y divide-gray-100 rounded-lg shadow w-44 bg-[rgb(0,0,0,0.6)]`}
                 >
                     <ul
                         className="py-2 text-sm text-gray-700 dark:text-gray-200"

@@ -9,7 +9,7 @@ interface ItemType {
     title:number;
 }
   
-type AddCurrentItemType = (item: ItemType,id:string) => void;
+type AddCurrentItemType = (item: ItemType) => void;
 interface ProductCardProps {
     item: ItemType;
     AddCurrentItem: AddCurrentItemType;
@@ -26,11 +26,11 @@ const Product_PageCard:React.FC<ProductCardProps> = ({item,AddCurrentItem}) => {
     </Link>
 
       <div className="item-desc flex justify-between flex-col pl-2">
-        <div className='text-lg font-[Poppins]'>{item.title}</div>
+        <div className='text-sm md:text-md xl:text-lg font-[Poppins]'>{item.title}</div>
         <div className='hidden'>{item.tag}</div>
-        <div className='font-semibold text-black'>Rs. {item.price}</div>
+        <div className='font-semibold text-black text-sm'>Rs. {item.price}</div>
         <div className="flex justify-between">
-          <button onClick={() => AddCurrentItem(item, v4())} className="hover:bg-black mr-1 w-4/5 text-sm transition-all px-2 py-1 rounded-md text-white bg-gray-900">Add item</button>
+          <button onClick={() => AddCurrentItem(item)} className="hover:bg-black mr-1 w-4/5 text-sm transition-all px-2 py-1 rounded-md text-white bg-gray-900">Add item</button>
           <Link href={`/products/${item._id}`}><button className='hover:bg-black transition-all px-2 py-1 rounded-md text-sm text-white bg-gray-900'>Details</button></Link>
         </div>
       </div>

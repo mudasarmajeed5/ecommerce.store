@@ -24,8 +24,6 @@ const Navbar:React.FC = () => {
     username = session.user.email.split('@')[0];
   }
   const pathname = usePathname();
-  const cartitems = useSelector((state:any) => state.CartItem.MyCart);
-  const Cart_items_length = cartitems.length;
   const mobileNavLinks = [
     {
       link: "/home",
@@ -69,7 +67,7 @@ const Navbar:React.FC = () => {
   return (
     <>
     <ToastContainer autoClose={1000} theme='dark' />
-    <nav className='flex sticky w-full  top-0 z-[100] flex-col-reverse md:flex-row items-center p-2 xl:p-3 2xl:p-4 md:justify-between'>
+    <nav className='flex sticky w-full  top-0 z-[100] flex-col-reverse md:flex-row items-center xl:p-3 2xl:p-4 md:justify-between'>
       <div className='hidden md:block logo font-[Poppins] text-xl md:font-light xl:text-2xl 2xl:text-4xl w-full text-center md:w-[30%]'>
         <span onClick={Jump_to_Home} className="hover:cursor-pointer hover:underline underline-offset-4"><span className="text-[--text-color] ecologo">Eco</span>Glow <span className="text-[--text-color] orglogo">Org</span>anics</span>
       </div>
@@ -77,7 +75,6 @@ const Navbar:React.FC = () => {
         <ul className='flex gap-3 2xl:gap-5 items-center justify-center'>
           {PCNavLinks.map((item, index) => {
             const isActive = pathname.startsWith(item.link);
-            const isCartItem = index === 3;  
             return (
               <li key={index} className='list-none text-sm relative'>
                 <Link 
@@ -86,9 +83,6 @@ const Navbar:React.FC = () => {
             >
               {item.text}
             </Link>
-                {isCartItem && session && (
-                  <span className='absolute top-[-5px] text-lime-300 xl:right-[-14px] 2xl:right-[-18px] p-1 rounded-full text-sm '>{Cart_items_length}</span>
-                )}
               </li>
             );
           })}
@@ -96,9 +90,9 @@ const Navbar:React.FC = () => {
       </div>
       <div className='search_login flex items-center gap-2 w-full justify-end md:w-[30%] '>
         <div className="flex w-full justify-between items-center py-2 md:py-0 md:justify-end">
-          <span className='md:hidden'>Find a Product? <Link href="/products" className="text-red-500 mx-1">Search here</Link></span>
+          <span className='md:hidden mx-3'>Find a Product? <Link href="/products" className="text-red-500 mx-1">Search here</Link></span>
           <span className='hidden md:block md:pr-5'><Link href="/products" className="text-red-500 mx-1">Search here</Link></span>
-          <button className='text-2xl'>{session ? <NavbarDropDown/> :<Link href={'/login'}><FaRegUserCircle/></Link> }</button>
+          <span className='text-2xl hover:cursor-pointer'>{session ? <NavbarDropDown/> :<Link href={'/login'}><FaRegUserCircle/></Link> }</span>
         </div>
         <div className="md:hidden z-[100] flex fixed left-0 bottom-0 w-full justify-around bg-[#2E0219] p-2">
           {mobileNavLinks.map((item, index) => {
@@ -111,9 +105,6 @@ const Navbar:React.FC = () => {
                   {item.icon} 
                   <span className="text-sm">{item.text}</span>
                 </Link>
-                {isCartItem && (
-                  <span className='absolute top-[-5px] text-lime-300 right-[-18px] p-1 rounded-full text-sm '>{Cart_items_length}</span>
-                )}
               </li>
             );
           })}

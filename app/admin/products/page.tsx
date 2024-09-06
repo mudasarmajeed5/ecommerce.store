@@ -8,23 +8,23 @@ import { useSession } from 'next-auth/react';
 type Form = {
   title: string,
   tag: string,
-  price: number,
+  price: string,
   image: string,
   desc: string,
 }
 const Products = () => {
   const { data :session } = useSession();
-  const [form, setform] = useState<Form>({
+  const [Form, setForm] = useState<Form>({
     title: '',
     tag: '',
-    price: 0,
+    price: '',
     image: '',
     desc: ''
   });
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setform(prevform => ({
-      ...prevform,
+    setForm(prevForm => ({
+      ...prevForm,
       [name]: name === 'price' ? Number(value) : value
     }));
   };
@@ -36,7 +36,7 @@ const Products = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ form })
+          body: JSON.stringify({ Form })
         })
         if (!response.ok) {
           console.log('Error:', response.statusText);
@@ -60,10 +60,10 @@ const Products = () => {
     if (loader) {
       await addProduct()
       toast.success('Product has been added to Database');
-      setform({
+      setForm({
         title: '',
         tag: '',
-        price: 0,
+        price: '',
         image: '',
         desc: ''
       })
@@ -101,7 +101,7 @@ const Products = () => {
                         className="w-full px-3 py-2 mt-1 border border-black rounded-md focus:outline-none focus:ring focus:ring-primary text-black bg-transparent"
                         placeholder="Enter product name"
                         required
-                        value={form.title}
+                        value={Form.title}
                       />
                     </div>
                     <div>
@@ -118,7 +118,7 @@ const Products = () => {
                         className="w-full px-3 py-2 mt-1 border border-black rounded-md focus:outline-none focus:ring focus:ring-primary text-black bg-transparent"
                         placeholder="Enter image link"
                         required
-                        value={form.image}
+                        value={Form.image}
                       />
                     </div>
                     <div>
@@ -136,7 +136,7 @@ const Products = () => {
                         className="w-full px-3 py-2 mt-1 border border-black rounded-md focus:outline-none focus:ring focus:ring-primary text-black bg-transparent"
                         placeholder="Enter product description"
                         required
-                        value={form.desc}
+                        value={Form.desc}
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
@@ -155,7 +155,7 @@ const Products = () => {
                           className="w-full px-3 py-2 mt-1 border border-black rounded-md focus:outline-none focus:ring focus:ring-primary text-black bg-transparent"
                           placeholder="Enter price"
                           required
-                          value={form.price}
+                          value={Form.price}
                         />
                       </div>
                       <div>
@@ -170,7 +170,7 @@ const Products = () => {
                           onChange={(e: any) => handleChange(e)}
                           className="w-full px-3 py-2 mt-1 border border-black rounded-md focus:outline-none focus:ring focus:ring-primary text-black bg-transparent"
                           required
-                          value={form.tag}
+                          value={Form.tag}
                         >
                           <option value="" disabled>
                             Select Category
@@ -200,16 +200,16 @@ const Products = () => {
             </div>
             <div className='w-[350px] overflow-y-auto overflow-x-hidden flex flex-col flex-wrap gap-3 relative border border-black rounded-lg bg-white py-4 px-8 h-fit my-5 mx-auto'>
               <img
-                src={form.image ? form.image : "https://fossil.scene7.com/is/image/FossilPartners/FS5237_main?$sfcc_fos_large$"}
+                src={Form.image ? Form.image : "/Add Product.png"}
                 alt="Product Image"
                 className="w-full h-[40vh] object-cover object-center mb-4"
               />
-              <h2 className="text-lg font-semibold mb-2 h-fit w-full break-words">{form.title ? form.title : "Your product title"}</h2>
+              <h2 className="text-lg font-semibold mb-2 h-fit w-full break-words">{Form.title ? Form.title : "Your product title"}</h2>
               <div className="text-sm mb-4 h-auto w-full break-words">
-                {form.desc ? form.desc : "Add your product's description"}
+                {Form.desc ? Form.desc : "Add your product's description"}
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-lg font-semibold">Rs.{form.price ? form.price : "_____ "} /- Only</span>
+                <span className="text-lg font-semibold">Rs.{Form.price ? Form.price : "_____ "} /- Only</span>
               </div>
             </div>
           </div>
