@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
-import { toast } from "react-toastify"
 import { ToastContainer } from "react-toastify"
 import CompactEditProductCard from "./compact-edit-product-card"
 import {
@@ -13,30 +12,37 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { Loader2Icon } from "lucide-react"
 
 // Expanded mock data for products
 
 export default function AdminDashboard() {
-  const [products, setProducts] = useState<any>([]);  
+  const [SearchTerm, setSearchTerm] = useState("");
+  const [products, setProducts] = useState<any>([]);
+  const get_products = async () => {
+    let loader = document.getElementById("loader");
+    loader?.classList.remove("hidden")
+    let response = await fetch('/api/products', { method: 'GET', headers: { 'Content-Type': 'application/json' } })
+    let data_received = await response.json();
+    let Products = data_received.foundData;
+    setProducts(Products)
+    loader?.classList.add("hidden")
+  }
   useEffect(() => {
-    const get_products = async () => {
-      let response = await fetch('/api/products', { method: 'GET', headers: { 'Content-Type': 'application/json' } })
-      let data_received = await response.json();
-      let Products = data_received.foundData;
-      setProducts(Products)
-    }
     get_products();
   }, [])
+
+  
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 10
-  const toggleProductStatus = async(id: string) => {
-    const updatedProducts = (products.map((product:any)=>{
-      return product.id===id ? {...product,isAvailable:!product.isAvailable} : product
+  const toggleProductStatus = async (id: string) => {
+    const updatedProducts = (products.map((product: any) => {
+      return product.id === id ? { ...product, isAvailable: !product.isAvailable } : product
     }));
     setProducts(updatedProducts);
     try {
-      const updatedProduct = updatedProducts.find((product:any) => product.id === id);
-      if(updatedProduct){
+      const updatedProduct = updatedProducts.find((product: any) => product.id === id);
+      if (updatedProduct) {
         await fetch('/api/products', {
           method: 'PUT',
           headers: {
@@ -48,16 +54,29 @@ export default function AdminDashboard() {
           }),
         });
       }
-      
+
       console.log('Product updated successfully');
     } catch (error) {
       console.error('Error updating product:', error);
     }
   }
+  // Search functionality
+  const getFilteredProducts = () => {
+    if (!SearchTerm) {
+      return products;
+    }
+    return products.filter((product:any) =>
+      product.title.toLowerCase().includes(SearchTerm.toLowerCase())
+    );
+  };
+  const filteredProducts = getFilteredProducts();
   const indexOfLastItem = currentPage * itemsPerPage
   const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  const currentItems = products.slice(indexOfFirstItem, indexOfLastItem)
-
+  const currentItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem)
+  const handleSearch = (e:any) => {
+    setSearchTerm(e.target.value);
+    setCurrentPage(1); // Reset to the first page when searching
+  };
   const nextPage = () => {
     if (indexOfLastItem < products.length) {
       setCurrentPage(currentPage + 1)
@@ -72,19 +91,20 @@ export default function AdminDashboard() {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <ToastContainer theme="light" autoClose={500}/>
+      <ToastContainer theme="light" autoClose={500} />
       <div className="flex-1 overflow-auto">
         <header className="p-4 shadow-sm bg-[--body-color]">
           <div className="flex items-center justify-between md:justify-around">
             <h1 className="text-xl text-white font-semibold">Products</h1>
             <h1 className="text-md flex gap-2 text-white font-semibold">
               <label htmlFor="searchProduct">Search:</label>
-              <input type="text" className="text-black rounded-md bg-white/50" name="searchProduct" />
+              <input type="text" value={SearchTerm} onChange={handleSearch} className="text-black rounded-md bg-white/50" name="searchProduct" />
             </h1>
-          </div>  
+          </div>
         </header>
         <main className="p-6 text-black">
           <div className="rounded-lg bg-white p-6 shadow-sm">
+            <div className="flex items-center gap-2 justify-end"><Button onClick={()=>get_products()}>Refresh Changes</Button> <Loader2Icon id="loader" className="hidden animate-spin"></Loader2Icon></div>
             <Table>
               <TableHeader>
                 <TableRow>
@@ -96,12 +116,12 @@ export default function AdminDashboard() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {currentItems.map((product:any) => (
+                {currentItems.map((product: any) => (
                   <TableRow key={product.id}>
                     <TableCell>{product.title}</TableCell>
                     <TableCell>Rs.{product.price}</TableCell>
                     <TableCell>{product.Stock}</TableCell>
-                    <TableCell>{product.isAvailable? "Active":"InActive"}</TableCell>
+                    <TableCell>{product.isAvailable ? "Active" : "InActive"}</TableCell>
                     <TableCell>
                       <Switch
                         checked={product.isAvailable === true}

@@ -39,7 +39,7 @@ const NavbarDropDown: React.FC = () => {
                 </button>
                 <div
                     id="dropdown"
-                    className={`z-10 ${dropdownVisible ? '' : 'hidden'} absolute right-4 divide-y divide-gray-100 rounded-lg shadow w-44 bg-[rgb(0,0,0,0.6)]`}
+                    className={`z-10 ${dropdownVisible ? '' : 'hidden'} absolute right-4 divide-y divide-gray-100 rounded-lg shadow w-44 bg-white`}
                 >
                     <ul
                         className="py-2 text-sm text-gray-700 dark:text-gray-200"

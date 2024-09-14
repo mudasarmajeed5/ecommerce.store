@@ -92,3 +92,18 @@ export async function PUT(request: any) {
             return NextResponse.json({ status: 500, message: err.message });
         }
 }
+export async function DELETE(request:any){
+    try {
+      let body = await request.json();
+      const id = body.id;
+      if (id){
+        const DeletedProduct = await Products.deleteOne({ id: id });
+        return NextResponse.json({status:200,message:'Product Deleted Successfully',DeletedProduct})
+    }else {
+        return NextResponse.json({status:404,message:'No product found with this ID'})
+      }
+    } catch (error) {
+       const err = error as Error;
+       return NextResponse.json({status:400,message:err.message}) 
+    }
+}
