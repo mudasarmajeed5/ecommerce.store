@@ -9,12 +9,12 @@ export async function POST(request:any) {
         const { cartitems } = await request.json();
         if (!email || !cartitems) {
             return NextResponse.json({ success: false, message: 'Email and cartitems are required' }, { status: 400 });
-        }
+        };
         const user = await User.findOneAndUpdate(
             { email },
             { cartitems },
             { new: true }
-        )
+        );
         if (!user) {
             return NextResponse.json({ success: false, message: 'User not found' }, { status: 404 });
         }

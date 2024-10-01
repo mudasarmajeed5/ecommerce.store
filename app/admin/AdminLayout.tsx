@@ -7,7 +7,7 @@ import { AdminNav } from "@/components/admin-nav"
 const AdminLayout: React.FC<LayoutProps> = ({ children }) => {
 
   return (<>
-    <div className='flex h-screen'>
+    <div className='flex h-screen bg-white'>
       <AdminNav />
       <main className="flex-1 overflow-y-auto text-black lg:ml-64">
         {children}

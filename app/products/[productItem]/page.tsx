@@ -1,15 +1,44 @@
 'use client'
 import { useState,useEffect } from 'react'
 import { Star, ShoppingCart, Heart } from 'lucide-react'
+import { useSession } from 'next-auth/react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { Label } from "@/components/ui/label";
+import { toast } from 'react-toastify'
 import { Loader2Icon } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 export default function ProductDetails() {
+  const {data:session} = useSession();
   const [product, setProduct] = useState<any>(null);
-  const [Loading, setLoading] = useState<boolean>(true);  // State for loading
+  const [Loading, setLoading] = useState<boolean>(true);
   const path = usePathname();
+  const [CartItems, setCartItems] = useState<any[]>(() => {
+    const savedCart = typeof window !== 'undefined' ? localStorage.getItem('cartitems') : null;
+    return savedCart ? JSON.parse(savedCart) : [];
+  })
+  const handleAddToCart = async() => {
+    let loader = document.querySelector(".AddtoCartLoader");
+    loader?.classList.remove("hidden")
+    const NewCart = [...CartItems,product]
+    setCartItems(NewCart);
+    localStorage.setItem('cartitems',JSON.stringify(NewCart));
+    const response = await fetch('/api/cartupdate',{
+      method:"POST",
+      headers:{
+        'Content-Type':"application/json",
+        'email': session?.user?.email || ''
+      },
+      body:JSON.stringify({cartitems:NewCart})
+    });
+    toast.success('Item has been added');
+    loader?.classList.add("hidden")
+    if (!response.ok){
+      console.error('Error during fetch',response.statusText);
+      alert("Failed to add item!")
+    }
+
+  }
   const _id = path.split("/")[2];
   useEffect(() => {
     const fetchProduct = async () => {
@@ -36,10 +65,7 @@ export default function ProductDetails() {
 
     fetchProduct();
   }, []);
-  const [quantity, setQuantity] = useState(1)
-  const handleAddToCart = () => {
-    console.log(`Added ${quantity} item(s) to cart`)
-  }
+  const [quantity, setQuantity] = useState(1);
   if (Loading){
     return <div className="min-h-[80vh] flex justify-center gap-4 text-black items-center">Loading product details...  <span><Loader2Icon className='animate-spin'/></span></div>;
   }
@@ -99,9 +125,9 @@ export default function ProductDetails() {
           <p className="mb-4 text-sm text-black"><span className="font-bold">{product?.Stock}</span> items in stock</p>
           <p className="mb-4 text-sm bg-white inline-block px-2 py-1 text-black">{product?.isAvailable? "Item is Available":"Item not Available"}</p>
           <div className="flex space-x-4">
-            <Button disabled={!product?.isAvailable} onClick={handleAddToCart} className="flex-1 bg-blue-600 hover:bg-blue-700">
+            <Button disabled={!product?.isAvailable} onClick={()=>handleAddToCart()} className="flex-1 gap-2 bg-blue-600 hover:bg-blue-700">
               <ShoppingCart className="w-4 h-4 mr-2" />
-              Add to Cart
+              Add to Cart <span><Loader2Icon className='hidden AddtoCartLoader animate-spin'/></span>
             </Button>
             <Button variant="outline" className="flex-1 hover:text-white border-blue-300 hover:bg-pink-600">
               <Heart className="w-4 h-4 mr-2" />

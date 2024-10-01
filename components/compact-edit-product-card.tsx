@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import { X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card"
@@ -9,6 +9,9 @@ import { Textarea } from "@/components/ui/textarea"
 import { ToastContainer, toast } from "react-toastify"
 interface Product {
   id: string
+  tag: string
+  desc: string
+  image: string
   title: string
   price: number
   Stock: number
@@ -66,7 +69,10 @@ const CompactEditProductCard: React.FC<CompactEditProductCardProps> = ({ data })
     image: "",
     Stock: 0,
   })
-
+  useEffect(() => {
+    setProduct(ProductData)
+  }, [])
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setProduct(prev => ({ ...prev, [name]: value }))
@@ -93,7 +99,22 @@ const CompactEditProductCard: React.FC<CompactEditProductCardProps> = ({ data })
               </div>
               <div className="space-y-2">
                 <Label htmlFor="tag">Tag</Label>
-                <Input id="tag" name="tag" value={product.tag} onChange={handleChange} placeholder="Product tag" />
+                <select
+                  name="tag"
+                  onChange={(e: any) => handleChange(e)}
+                  className="w-full px-3 py-2 mt-1 border border-black rounded-md focus:outline-none focus:ring focus:ring-primary text-black bg-transparent"
+                  required
+                  value={product.tag}
+                >
+                  <option value="" disabled>
+                    Select Category
+                  </option>
+                  <option value="blushes">Blushes</option>
+                  <option value="eyeliners">Eyeliners</option>
+                  <option value="creams">Creams</option>
+                  <option value="concealers">Concealers</option>
+                  <option value="sports">Sports</option>
+                </select>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">

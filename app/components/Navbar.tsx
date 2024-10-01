@@ -67,7 +67,7 @@ const Navbar:React.FC = () => {
   return (
     <>
     <ToastContainer autoClose={1000} theme='dark' />
-    <nav className='flex sticky w-full  top-0 z-[100] flex-col-reverse md:flex-row items-center xl:p-3 2xl:p-4 md:justify-between'>
+    <nav className='flex sticky w-full top-0 z-[100] flex-col-reverse md:flex-row items-center md:p-2 xl:p-3 2xl:p-4 md:justify-between'>
       <div className='hidden md:block logo font-[Poppins] text-xl md:font-light xl:text-2xl 2xl:text-4xl w-full text-center md:w-[30%]'>
         <span onClick={Jump_to_Home} className="hover:cursor-pointer hover:underline underline-offset-4"><span className="text-[--text-color] ecologo">Eco</span>Glow <span className="text-[--text-color] orglogo">Org</span>anics</span>
       </div>

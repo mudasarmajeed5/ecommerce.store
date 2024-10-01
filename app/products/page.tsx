@@ -2,8 +2,11 @@
 import { useEffect, useState } from "react";
 import Product_PageCard from "./components/ProductsPageCard";
 import { toast } from "react-toastify";
+import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 const Products = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
   const { data: session } = useSession();
   const [loading, setloading] = useState(true)
   const [search, setsearch] = useState("");
@@ -11,7 +14,7 @@ const Products = () => {
   const [CartItems, setCartItems] = useState<any[]>(() => {
     const savedCart = typeof window !== 'undefined' ? localStorage.getItem('cartitems') : null;
     return savedCart ? JSON.parse(savedCart) : [];
-  })
+  });
   const [FilterSearch, setFilterSearch] = useState([]);
   const AddCurrentItem = async (item: any) => {
     try {
@@ -46,8 +49,8 @@ const Products = () => {
   useEffect(() => {
     const get_products = async () => {
       let response = await fetch('/api/products', { method: 'GET', headers: { 'Content-Type': 'application/json' } })
-      let data_received = await response.json();
-      let Products = data_received.foundData;
+      let { foundData } = await response.json();
+      let Products = foundData.filter((prod: any) => prod.isAvailable);
       setProductsData(Products)
       setFilterSearch(Products);
       setloading(false);
@@ -66,6 +69,21 @@ const Products = () => {
       <span className="p-4 border-2 border-t-black border-white animate-spin rounded-full"></span>
     </div>;
   }
+
+  const indexOfLastItem = currentPage * itemsPerPage
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  const currentItems = ProductsData.slice(indexOfFirstItem, indexOfLastItem)
+  const nextPage = () => {
+    if (indexOfLastItem < ProductsData.length) {
+      setCurrentPage(currentPage + 1)
+    }
+  }
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1)
+    }
+  }
   return (
     <>
       {FilterSearch.length < 1 && <div className='text-[30px] w-full h-[80vh] flex justify-center items-center text-[--body-color] text-center animate-pulse text-bold mt-5'>No Results found</div>}
@@ -76,10 +94,18 @@ const Products = () => {
         <div className='Products w-full flex md:flex-row flex-col gap-5'>
           {FilterSearch.length !== 0 && <div className="md:w-1/5 p-2 text-center">Filters and other Tags added here</div>}
           <div className="md:w-4/5 mx-auto grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
-            {FilterSearch.map((item, index) => {
+            {currentItems.map((item, index) => {
               return (<Product_PageCard key={index} item={item} AddCurrentItem={AddCurrentItem} />)
             })}
           </div>
+        </div>
+        <div className="space-x-2 flex justify-end p-5">
+          <Button onClick={prevPage} disabled={currentPage === 1}>
+            Prev. 
+          </Button>
+          <Button onClick={nextPage} disabled={indexOfLastItem >= ProductsData.length}>
+            Next
+          </Button>
         </div>
       </div>
 

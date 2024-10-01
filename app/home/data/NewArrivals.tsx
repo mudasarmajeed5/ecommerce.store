@@ -64,7 +64,7 @@ const NewArrivals: React.FC = () => {
                 let Product_Array = []
                 for (let i = 0; i <= 7; i++) {
                     let product_number = HotDeals[i];
-                    Product_Array.push(product_number);
+                    if (product_number.isAvailable) Product_Array.push(product_number);
                 }
                 if (HotDeals.length > 0) setProducts(Product_Array)
                 setLoading(false);
