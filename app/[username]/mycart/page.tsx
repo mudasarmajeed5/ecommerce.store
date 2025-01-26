@@ -5,6 +5,15 @@ import { useSession } from "next-auth/react"
 import { toast } from "react-toastify"
 import { FiMinus } from "react-icons/fi";
 import { FiPlus } from "react-icons/fi"
+import { convertToPaisa } from "@/lib/convert-currency"
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import CheckoutPage from "@/components/checkout-page"
+const stripe_public_Key = process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY
+if (!stripe_public_Key) {
+  throw new Error('Key is not available')
+}
+const stripePromise = loadStripe(stripe_public_Key);
 const Mycart = () => {
   let totalPrice = 0;
   const { data: session } = useSession();
@@ -18,7 +27,7 @@ const Mycart = () => {
   CartItems.forEach(item => {
     totalPrice += item.price;
   });
-  const updateDatabase = async (cartItems: any)=>{
+  const updateDatabase = async (cartItems: any) => {
     try {
       localStorage.setItem('cartitems', JSON.stringify(cartItems))
       const response = await fetch('/api/cartupdate', {
@@ -38,13 +47,13 @@ const Mycart = () => {
     }
   }
   let timer: NodeJS.Timeout | null = null;
-  const updateCartInDatabase_Debounce= (cartItems:any) => {
+  const updateCartInDatabase_Debounce = (cartItems: any) => {
     if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
       updateDatabase(cartItems)
-    }, 1000); 
+    }, 1000);
   }
-  
+
   const [Loader, setLoader] = useState<boolean>(true)
   useEffect(() => {
     const fetchUserCart = async () => {
@@ -64,7 +73,7 @@ const Mycart = () => {
           let fetchedCart = data.found_user.cartitems;
           fetchedCart = fetchedCart.map((item: any) => ({
             ...item,
-            quantity: item.quantity? item.quantity:1
+            quantity: item.quantity ? item.quantity : 1
           }));
           setCartItems(fetchedCart)
           localStorage.setItem('cartitems', JSON.stringify(fetchedCart))
@@ -103,7 +112,7 @@ const Mycart = () => {
     localStorage.setItem('cartitems', JSON.stringify(updatedCartItems));
     updateCartInDatabase_Debounce(updatedCartItems);
   }
-  
+
   const handleRemoveItem = async (item: any) => {
     const updatedCart = CartItems.filter(CartItem => CartItem.id !== item.id);
     try {
@@ -189,13 +198,21 @@ const Mycart = () => {
                 <span className="total-bill font-normal">
                   {totalPrice}
                 </span></div>
-              <div className="flex items-center gap-2 text-sm"><input className='border px-2 py-1 border-black' type="text" placeholder='Coupon code' /><button className='bg-blue-600 text-white px-2 py-1 hover:bg-blue-500 '>Add Coupon</button></div>
-              <button className='px-2 py-1 text-sm rounded-sm hover:bg-blue-700 bg-blue-500 text-white transition-all'>Checkout</button>
+              <div className="flex items-center gap-2 text-sm"><input className='border px-2 py-1 border-black' type="text" placeholder='Coupon code' /><button className='bg-blue-600 text-white px-2 py-1 hover:bg-blue-500'>Add Coupon</button></div>
+              <Elements
+                options={{
+                  mode: "payment",
+                  amount: convertToPaisa(totalPrice),
+                  currency: "pkr",
+                }}
+                stripe={stripePromise}
+              >
+                <CheckoutPage amount={totalPrice} />
+              </Elements>
             </div>
           </div>
         </div>}
     </div>
-
   </>
   )
 }

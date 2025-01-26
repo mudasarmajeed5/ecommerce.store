@@ -1,5 +1,4 @@
 'use client'
-import { v4 } from "uuid"
 import { useEffect, useState } from "react"
 import Link from "next/link";
 import { useSession } from "next-auth/react";
@@ -89,7 +88,7 @@ const NewArrivals: React.FC = () => {
             <div className="md:w-4/5 mx-auto place-items-center border-black grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
                 {Products.map((item: ItemType, index) => {
                     return (
-                        <div key={index} className='card w-[170px] md:w-[220px] flex flex-col justify-between relative hover:shadow-red-700 hover:shadow-xl transition-all duration-300 p-1 text-[--body-color]'>
+                        <div key={index} className='card w-[170px] md:w-[220px] flex flex-col justify-between relative border rounded-md transition-all duration-300 p-1 text-[--body-color]'>
                             <div className="image relative py-2">
                                 <Link href={`/products/${item._id}`}>
                                     <img className='w-[160px] md:w-[200px] m-1 mx-auto duration-300 h-[160px] hover:scale-100 scale-95 transition-transform object-cover text-center rounded-md' src={item.image} alt="" />

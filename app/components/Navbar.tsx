@@ -1,6 +1,5 @@
 'use client'
 import { usePathname,useRouter } from "next/navigation"
-import { useSelector } from "react-redux"
 import "./Navbar.css"
 import NavbarDropDown from "./NavbarDropDown"
 import { FaRegUserCircle } from "react-icons/fa"
